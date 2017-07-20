@@ -16,6 +16,16 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('nro_deposito');
+            $table->date('fecha_deposito');
+            $table->decimal('monto',8,2);
+            $table->string('glosa');
+            $table->integer('id_cuenta');
+            //Add fk
+            $table->foreign('id_cuenta')
+                  ->references('id')
+                  ->on('cuentas');
+
         });
     }
 

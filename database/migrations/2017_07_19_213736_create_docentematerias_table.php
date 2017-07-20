@@ -13,9 +13,21 @@ class CreateDocentemateriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('docentematerias', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('docentematerias', function (Blueprint $table) {        
             $table->timestamps();
+            $table->smallInteger('id_docente');
+            $table->integer('id_gestion');
+            $table->integer('id_materia');
+            //fk
+            $table->foreign('id_docente')
+                  ->references('id')
+                  ->on('docentes') ;
+            $table->foreign('id_gestion')
+                  ->references('id')
+                  ->on('gestiones');
+            $table->foreign('id_materia')
+                  ->references('id')
+                  ->on('materias');
         });
     }
 

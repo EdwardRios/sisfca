@@ -16,6 +16,9 @@ class CreateGestionesTable extends Migration
         Schema::create('gestiones', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->smallInteger('anho');
+            $table->smallInteger('version');
+            $table->string('grupo',4);
         });
     }
 

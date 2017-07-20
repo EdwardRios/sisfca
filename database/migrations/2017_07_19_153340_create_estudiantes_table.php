@@ -24,11 +24,11 @@ class CreateEstudiantesTable extends Migration
             $table->date('fechanac');
             $table->string('email');
             $table->string('domicilio');
-            $table->smallinteger('idcarrera');
+            $table->smallinteger('id_carrera');
             $table->date('fechaegresado');
             $table->smallinteger('ppg');  
             //llaves foraneas
-            $table->foreign('idcarrera')
+            $table->foreign('id_carrera')
                   ->references('id')->on('carreras');                  
         });
     }

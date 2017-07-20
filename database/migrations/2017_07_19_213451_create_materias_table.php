@@ -16,6 +16,14 @@ class CreateMateriasTable extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('codigo', 7);
+            $table->string('nombre');
+            $table->smallInteger('nivel');
+            $table->smallInteger('id_programa');
+            //fk
+            $table->foreign('id_programa')
+                  ->references('id')
+                  ->on('programas');            
         });
     }
 
