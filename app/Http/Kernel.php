@@ -18,6 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        //\App\Http\Middleware\Capa1::class
     ];
 
     /**
@@ -40,6 +41,10 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+        'datos' => [
+            'dato1' => \App\Http\Middleware\Capa1::class,
+            'dato2' => \App\Http\Middleware\Capa2::class,
+        ],
     ];
 
     /**
@@ -56,5 +61,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'chau' => \App\Http\Middleware\Capa1::class,
+        'edad' => \App\Http\Middleware\Capa3::class,
     ];
 }

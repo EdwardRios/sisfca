@@ -11,8 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-   
-    // return view('welcome');
-    return 'Hola que hace \n jajjaaj';
+Route::get('/', function () {     
+    return view('home');
 });
+
+Route::get('ruta', function(){
+    return 'Probando ruta';
+});
+
+Route::resource('carrera', 'CarrerasController' );
+Route::resource('docente','DocenteController');
+Route::resource('estudiante','EstudianteController');
+Route::resource('programa','ProgramaController');
+Route::resource('materia','MateriaController');
+Route::resource('gestion','GestionController');
+Route::get('/listaTipoPrograma','MateriaController@listaTipoPrograma');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -17,16 +17,18 @@ class CreateEstudiantesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('carnet')->unique();
+            $table->string('ciciudad');
             $table->string('registro',8)->unique();
             $table->string('nombre',50);
             $table->string('apellido',50);            
             $table->char('sexo',1);
             $table->date('fechanac');
+            $table->integer('telefono');
             $table->string('email');
             $table->string('domicilio');
-            $table->smallinteger('id_carrera');
             $table->date('fechaegresado');
             $table->smallinteger('ppg');  
+            $table->smallinteger('id_carrera');
             //llaves foraneas
             $table->foreign('id_carrera')
                   ->references('id')->on('carreras');                  
