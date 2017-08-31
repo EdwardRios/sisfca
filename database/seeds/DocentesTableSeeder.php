@@ -11,11 +11,6 @@ class DocentesTableSeeder extends Seeder
      */
     public function run()
     {
-        $nombre = [
-            'Pedro',
-            'Carlos',
-            'Maria',
-            'Esteban'
-        ];
+        factory(\App\Docente::class,50)->create();
     }
 }

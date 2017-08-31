@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container"><h1 CLASS="text-center">Editar Docente {{ $docente->name }}</h1></div>
+    <h3 class="text-center">Editar Docente {{ $docente->name }}</h3>
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-success">
             <div class="panel-heading"> Editar Docente</div>
@@ -18,5 +18,14 @@
             </div>
         </div>
     </div>
-
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#fechanac').datepicker({
+                startView: 2,
+                language: "es"
+            });
+        });
+    </script>
 @endsection

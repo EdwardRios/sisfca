@@ -18,3 +18,17 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#fechanac').datepicker({
+                startView: 2,
+                language: "es"
+            });
+            $('#fechaegresado').datepicker({
+                startView: 2,
+                language: "es"
+            });
+        });
+    </script>
+@endsection

@@ -19,9 +19,9 @@ class CreateMateriasTable extends Migration
             $table->string('codigo', 7);
             $table->string('nombre');
             $table->smallInteger('nivel');
-            $table->smallInteger('id_programa');
+            $table->smallInteger('programa_id');
             //fk
-            $table->foreign('id_programa')
+            $table->foreign('programa_id')
                   ->references('id')
                   ->on('programas');            
         });

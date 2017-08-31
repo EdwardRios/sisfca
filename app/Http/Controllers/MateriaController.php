@@ -45,8 +45,8 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        $cantPro=Materia::where('id_programa',$request->get('id_programa'))->count();
-        $tipoPro=Programa::select('tipo')->where('id',$request->get('id_programa'))->first();
+        $cantPro=Materia::where('programa_id',$request->get('programa_id'))->count();
+        $tipoPro=Programa::select('tipo')->where('id',$request->get('programa_id'))->first();
 
         if (($tipoPro->tipo)=='Maestria' && $cantPro>17) return back()->with('msj','El programa elegido no puede tener mas de 18 materias');
         elseif (($tipoPro->tipo)=='Diplomado' && $cantPro>5) return back()->with('msj','El programa elegido no puede tener mas de 6 materias');

@@ -10,6 +10,10 @@ class Programa extends Model
 
     public function materias()
     {
-        return $this->hasMany(Materia::class,'id_programa');
+        return $this->hasMany(Materia::class,'programa_id');
+    }
+    public function cuentas()
+    {
+        return $this->hasMany(Cuenta::class,'programa_id');
     }
 }

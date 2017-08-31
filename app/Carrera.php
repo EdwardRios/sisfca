@@ -8,9 +8,7 @@ class Carrera extends Model
 {
     protected $fillable = ['nombre'];
     public $timestamps = false;
-
-
     public function estudiante (){
-        return $this->hasMany(Estudiante::class,'id_carrera');
+        return $this->hasMany(Estudiante::class,'carrera_id');
     }     
 }

@@ -1,57 +1,94 @@
+@if(session()->has('msj'))
+    <div class="alert alert-danger" role="alert">{{ session('msj')}}</div>
+@endif
 <div class="row">
-    <div class="col-md-6 form-group {{ $errors->has('anho') ? 'has-error' : '' }}">
-        {!! Form::label('anho','Año') !!}
-        {!! Form::number('anho',null,
+    <div class="col-md-6 form-group {{ $errors->has('docente_id') ? 'has-error' : '' }}">
+        {!! Form::label('docente_id','Docente') !!}
+        {!! Form::select('docente_id',
+            $docentes,
+            null,
             [
                 'required',
                 'class' => 'form-control',
-                'min' => '2008',
-                'max' => '2030'
             ]
         ) !!}
-        @if($errors->has('anho'))
+        @if($errors->has('docente_id'))
             <span class="help-block">
-                                <strong>{{ $errors->first('anho') }}</strong>
+                                <strong>{{ $errors->first('docente_id') }}</strong>
                             </span>
         @endif
     </div>
-    <div class="col-md-6 form-group {{ $errors->has('edicion') ? 'has-error' : '' }}">
-        {!! Form::label('edicion','Edicion') !!}
-        {!! Form::number('edicion',null,
+    <div class="col-md-6 form-group {{ $errors->has('materia_id') ? 'has-error' : '' }}">
+        {!! Form::label('materia_id','Materia a ofertar') !!}
+        {!! Form::select('materia_id',$materias,null,
             [
                 'required',
-                'min'=>'1',
-                'max'=>'30',
                 'class' => 'form-control'
             ]
         ) !!}
-        @if($errors->has('edicion'))
+        @if($errors->has('materia_id'))
             <span class="help-block">
-            <strong>{{ $errors->first('edicion') }}</strong>
+            <strong>{{ $errors->first('materia_id') }}</strong>
         </span>
         @endif
     </div>
+</div> {{--CB Gestion--}}
+<div class="form-group {{ $errors->has('gestion_id') ? 'has-error' : '' }}">
+        <label for="gestion_id">Gestion ID</label>
+        <select class="form-control" name="gestion_id" id="gestion_id">
+            @foreach($gestiones as $ges)
+            <option value="{{ $ges->id }}">
+                Año: {{$ges->anho}}&nbsp;&nbsp;
+                Edicion: {{ $ges->edicion}}&nbsp; &nbsp;
+                Version: {{ $ges->version }}&nbsp;&nbsp;
+                Grupo: {{$ges->grupo}}
+            </option>
+            @endforeach
+        </select>
+        @if($errors->has('gestion_id'))
+            <span class="help-block">
+            <strong>{{ $errors->first('gestion_id') }}</strong>
+        </span>
+        @endif
 </div>
-<div class="row form-group">
-    <div class="col-md-6">
-        {!! Form::label('version', 'Version') !!}
-        {!! Form::number('version',null,
-            [
-                'required',
-                'class' => 'form-control',
-                'min' => '1',
-                'max' => '10'
-            ]
-        ) !!}
 
+<div class="form-group">
+    {!! Form::label('','Periodo') !!}
+    <div class="input-daterange input-group">
+        <div class="{{ $errors->has('fecha_inicio') ? 'has-error' : '' }}">
+            {!! Form::text('fecha_inicio',
+                date('d-m-Y'),
+                [
+                    'required',
+                    'class' => 'form-control',
+                    'name'=> 'fecha_inicio',
+                    'id'=>'fecha_inicio'
+                ]
+            ) !!}
+            @if($errors->has('fecha_inicio'))
+                <span class="help-block">
+               <strong>{{ $errors->first('fecha_inicio') }}</strong>
+           </span>
+            @endif
+        </div>
+        <span id="id" class="input-group-addon">Hasta</span>
+        <div class="{{ $errors->has('fecha_fin') ? 'has-error' : '' }}">
+            {!! Form::text('fecha_fin',
+                date('d-m-Y'),
+                [
+                    'required',
+                    'class' => 'form-control',
+                    'name'=> 'fecha_fin',
+                    'id' => 'fecha_fin'
+                ]
+            ) !!}
+            @if($errors->has('fecha_fin'))
+                <span class="help-block">
+               <strong>{{ $errors->first('fecha_fin') }}</strong>
+           </span>
+            @endif
+        </div>
     </div>
-    <div class="col-md-6">
-        {!! Form::label('grupo','Grupo') !!}
-        {!! Form::text('grupo',null,
-            [
-                'class'=> 'form-control',
-            ]
-        ) !!}
-    </div>
+</div>
 </div>
 

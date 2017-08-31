@@ -13,9 +13,10 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $estudiante = Estudiante::nombre($request->get('nombre'))->paginate(10);
+        return view('estudiante.index',compact('estudiante'));
     }
 
     /**
@@ -65,7 +66,7 @@ class EstudianteController extends Controller
     public function show($id)
     {
         $estudiante = Estudiante::find($id);
-        return view('estudiante.show', compact('estudiante'));
+        return view('pago.show', compact('estudiante'));
     }
 
     /**

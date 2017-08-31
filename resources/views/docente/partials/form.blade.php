@@ -17,7 +17,9 @@
     {!! Form::text('nombre',null,
         [
             'required',
-            'class' => 'form-control'
+            'class' => 'form-control',
+            'pattern' => '[a-zA-ZñÑ ]{3,50}',
+            'title' => 'Ingrese solo letras. Min:3 y Max:10'
         ]
     ) !!}
     @if($errors->has('nombre'))
@@ -31,6 +33,7 @@
     {!! Form::text('apellido',null,
         [
             'required',
+            'pattern' => '[a-zA-ZñÑ ]{3,50}',
             'class' => 'form-control'
         ]
     ) !!}
@@ -46,7 +49,9 @@
         {!! Form::text('carnet',null,
             [
                 'required',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'pattern' => '[0-9]{5,50}',
+                'title' => 'Ingrese solo numeros'
             ]
         ) !!}
 
@@ -131,7 +136,8 @@
         {!! Form::label('telefono', 'Telefono') !!}
         {!! Form::number('telefono',null,
             [
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'min' => '0'
             ]
         ) !!}
 
@@ -146,8 +152,8 @@
     </div>
     <div class="col-md-3 {{ $errors->has('fechanac') ? 'has-error' : '' }}">
         {!! Form::label('fechanac','Fecha Nacimiento') !!}
-        {!! Form::date( 'fechanac',
-            ($docente->fechanac) ? $docente->fechanac : date('d-m-Y'),
+        {!! Form::text( 'fechanac',
+            ($docente->fechanac) ? $docente->fechanac->format('d/m/Y') : date('d/m/Y'),
             [
                 'required',
                 'class' => 'form-control'

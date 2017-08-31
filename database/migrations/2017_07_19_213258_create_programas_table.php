@@ -17,8 +17,8 @@ class CreateProgramasTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('codigo')->unique();
+            $table->string('nombre');
             $table->string('tipo',13);
-            $table->string('nombre');            
         });
     }
 

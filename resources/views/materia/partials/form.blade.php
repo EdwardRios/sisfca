@@ -40,24 +40,21 @@
     </div>
 </div>
 <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
-    {!! Form::label('id_programa','Nombre Programa') !!}
-    {!! Form::select('id_programa',
+    {!! Form::label('programa_id','Nombre Programa') !!}
+    {!! Form::select('programa_id',
         [null=>'Seleccione'],null,
         [
             'required',
             'class' => 'form-control nombrePrograma',
         ]
     )!!}
-    @if($errors->has('id_programa'))
+    @if($errors->has('programa_id'))
         <span class="help-block">
-            <strong>{{ $errors->first('id_programa') }}
+            <strong>{{ $errors->first('programa_id') }}
             </strong>
         </span>
     @endif
 </div>
- {{--<select class="productname">--}}
-        {{--<option value="0" disabled="true" selected="true">Product Name</option>--}}
- {{--</select>--}}
 <div class="form-group {{ $errors->has('nivel') ? 'has-error' : '' }}">
     {!! Form::label('nivel','Nivel Materia') !!}
     {!! Form::select('nivel',
@@ -81,6 +78,8 @@
     {!! Form::label('nombre','Nombre') !!}
     {!! Form::text ( 'nombre',null,
         [
+            'required',
+            'pattern' => '[a-zA-ZñÑ() ]{3,150}',
             'class' => 'form-control'
         ]
     ) !!}

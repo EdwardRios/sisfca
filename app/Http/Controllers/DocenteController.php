@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDocente;
+use App\Http\Requests\UpdateDocente;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Docente;
 class DocenteController extends Controller
 {
@@ -16,12 +18,14 @@ class DocenteController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$docentes = Docente::orderBy('nombre')->get();
+
+		$docentes = Docente::nombre($request->get('nombre'))->orderBy('id','desc')->paginate(10);
 		return view('docente.index',compact('docentes'));
 
 	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -67,11 +71,8 @@ class DocenteController extends Controller
 	public function show($id)
 	{
 		$docente = Docente::find($id);
-
 		return view('docente.show', compact('docente'));
-
 	}
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -80,11 +81,9 @@ class DocenteController extends Controller
 	 */
 	public function edit($id)
 	{
-		$docente = Docente::where('id',$id)
-            ->first();
+		$docente = Docente::where('id',$id)->first();
 		return view('docente.edit',compact('docente'));
 	}
-
     /**
      * Update the specified resource in storage.
      *
@@ -92,7 +91,7 @@ class DocenteController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-	public function update(StoreDocente $request, $id)
+	public function update(UpdateDocente $request, $id)
 	{
         $docente = Docente::where('id',$id)->first();
         $docente->fill($request->all());

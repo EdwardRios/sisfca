@@ -24,7 +24,7 @@
                     </tr>
                     <tr>
                         <td>Fecha Nacimiento</td>
-                        <td>{{ $docente->fechanac }}</td>
+                        <td>{{ $docente->fechanac->format('d/m/Y') }}</td>
                     </tr>
                     <tr>
                         <td>Sexo</td>

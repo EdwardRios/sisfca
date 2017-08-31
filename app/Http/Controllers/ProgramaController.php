@@ -51,7 +51,7 @@ class ProgramaController extends Controller
     public function show($id)
     {
         $programa = Programa::find($id);
-        $materia = Materia::select('nombre','nivel')->where('id_programa',$id)->get();
+        $materia = Materia::select('nombre','nivel')->where('programa_id',$id)->get();
         return view('programa.show',compact('programa','materia'));
     }
 

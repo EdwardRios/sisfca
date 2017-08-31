@@ -5,6 +5,7 @@
             [
                 'required',
                 'class' => 'form-control',
+                'min'=> '0'
             ]
         ) !!}
         @if($errors->has('registro'))
@@ -19,6 +20,7 @@
             [
                 'required',
                 'class' => 'form-control',
+                'min'=> '0'
             ]
         )!!}
         @if($errors->has('carnet'))
@@ -27,19 +29,27 @@
         </span>
         @endif
     </div>
-    <div class="form-group col-md-4 {{ $errors->has('carnet') ? 'has-error' : '' }}">
-        <label for="ciciudad">C.I.Ciudad</label>
-        <select class="form-control" name="ciciudad" id="ciciudad">
-            <option value="Santa Cruz">Santa Cruz</option>
-            <option value="Cochabamba">Cochabamba</option>
-            <option value="Oruro">Oruro</option>
-            <option value="Beni">Beni</option>
-            <option value="Pando">Pando</option>
-            <option value="La Paz">La Paz</option>
-            <option value="Potosi">Potosi</option>
-            <option value="Tarija">Tarija</option>
-            <option value="Chuquisaca">Chuquisaca</option>
-        </select>
+    <div class="form-group col-md-4 {{ $errors->has('ciciudad') ? 'has-error' : '' }}">
+        {!! Form::label('ciciudad', 'Ciudad Carnet') !!}
+        {!! Form::select('ciciudad',
+            [
+                'Santa Cruz' => 'Santa Cruz',
+                'Cochabamba'=>'Cochabamba',
+                'Oruro'=>'Oruro',
+                'Beni'=>'Beni',
+                'Pando'=>'Pando',
+                'La Paz'=>'La Paz',
+                'Potosi'=>'Potosi',
+                'Tarija'=>'Tarija',
+                'Chuquisaca'=>'Chuquisaca',
+            ],null,
+            [
+                'class' => 'form-control',
+                'placeholder' => 'Elija la ciudad de emision de carnet',
+                'required'
+            ]
+        )!!}
+
         @if($errors->has('ciciudad'))
             <span class="help-block">
             <strong>{{ $errors->first('ciciudad') }}
@@ -101,7 +111,7 @@
 <div class="row">
     <div class="form-group col-md-4 {{ $errors->has('fechanac') ? 'has-error' : '' }}">
         {!! Form::label('fechanac','Fecha Nacimiento') !!}
-        {!! Form::date('fechanac',
+        {!! Form::text('fechanac',
             ($estudiante->fechanac) ? $estudiante->fechanac->format('d-m-Y') : date('d-m-Y'),
             [
                 'required',
@@ -129,9 +139,11 @@
     </div>
     <div class="form-group col-md-3 {{ $errors->has('telefono') ? 'has-error' : '' }}">
         {!! Form::label('telefono','Telefono') !!}
-        {!! Form::text('telefono',null,
+        {!! Form::number('telefono',null,
             [
-                'class' => 'form-control',
+                'min' => '0',
+                'step' => '1',
+                'class' => 'form-control'
             ]
         )!!}
         @if($errors->has('telefono'))
@@ -158,7 +170,7 @@
 <div class="row">
     <div class="form-group col-md-4 {{ $errors->has('fechaegresado') ? 'has-error' : '' }}">
         {!! Form::label('fechaegresado','Fecha Egreso') !!}
-        {!! Form::date('fechaegresado',
+        {!! Form::text('fechaegresado',
             ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d-m-Y') : date('d-m-Y'),
             [
                 'required',
@@ -194,6 +206,9 @@
             [
                 'required',
                 'class' => 'form-control',
+                'min' => '0',
+                'max' => '100',
+                'step' => '1'
             ]
         )!!}
         @if($errors->has('ppg'))

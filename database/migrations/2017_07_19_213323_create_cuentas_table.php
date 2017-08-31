@@ -17,17 +17,18 @@ class CreateCuentasTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->decimal('monto_programa',8,2);
-            $table->integer('descuento');
-            $table->integer('materias_reprobadas');
-            $table->decimal('monto_pagado',8,2);
-            $table->decimal('saldo',8,2);
-            $table->smallInteger('id_programa');
-            $table->integer('id_estudiante');        
+            $table->integer('descuento')->default(0)->nullable();
+            $table->integer('materias_reprobadas')->default(0);
+            $table->decimal('monto_pagado',8,2)->default(0);
+            $table->decimal('saldo',8,2)->nullable();
+            $table->smallInteger('programa_id');
+            $table->integer('estudiante_id');
+            $table->unique('programa_id','estudiante_id');
             //fk
-            $table->foreign('id_estudiante')
+            $table->foreign('estudiante_id')
                   ->references('id')
                   ->on('estudiantes');
-            $table->foreign('id_programa')
+            $table->foreign('programa_id')
                   ->references('id')
                   ->on('programas');
         });

@@ -13,14 +13,12 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($gestion as $ges)
                 <tr>
-                    <td>{{ $ges->anho}}</td>
-                    <td>{{ $ges->edicion}}</td>
-                    <td>{{ $ges->version}}</td>
-                    <td>{{ $ges->grupo}}</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
                 </tr>
-            @endforeach
             </tbody>
         </table>
     </div>

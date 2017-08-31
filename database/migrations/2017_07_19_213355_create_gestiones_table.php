@@ -13,12 +13,14 @@ class CreateGestionesTable extends Migration
      */
     public function up()
     {
+
         Schema::create('gestiones', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->smallInteger('anho');
-            $table->smallInteger('version');
             $table->string('grupo',4);
+            $table->smallInteger('version');
+            $table->smallInteger('edicion');
+            $table->smallInteger('anho');
         });
     }
 

@@ -20,9 +20,9 @@ class CreatePagosTable extends Migration
             $table->date('fecha_deposito');
             $table->decimal('monto',8,2);
             $table->string('glosa');
-            $table->integer('id_cuenta');
+            $table->integer('cuenta_id');
             //Add fk
-            $table->foreign('id_cuenta')
+            $table->foreign('cuenta_id')
                   ->references('id')
                   ->on('cuentas');
 

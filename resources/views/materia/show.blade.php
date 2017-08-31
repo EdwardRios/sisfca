@@ -16,8 +16,13 @@
                     </tr>
                     <tr>
                         <td>Codigo Programa</td>
-                        <td>{{ $materia->id_programa }}</td>
+                        <td>{{ $materia->programas->codigo }}</td>
                     </tr>
+                    <tr>
+                        <td>Nombre Programa</td>
+                        <td>{{ $materia->programas->nombre }}</td>
+                    </tr>
+
 
                 </table>
                 <div class="center-block" style="text-align:center">

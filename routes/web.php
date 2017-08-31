@@ -25,7 +25,20 @@ Route::resource('estudiante','EstudianteController');
 Route::resource('programa','ProgramaController');
 Route::resource('materia','MateriaController');
 Route::resource('gestion','GestionController');
+Route::resource('oferta','OfertaController');
+Route::resource('inscripcion','InscripcionController');
+Route::resource('cuenta','CuentaController');
+Route::get('/pago/crear/{id}','PagoController@createPago')->name('pago.crear');;
+Route::resource('pago','PagoController');
+
 Route::get('/listaTipoPrograma','MateriaController@listaTipoPrograma');
+Route::get('/listaGestionPrograma','InscripcionController@listaGestionPrograma');
+Route::get('/listaMateria','InscripcionController@listaMateria');
+Route::get('/listaGestionMateria','InscripcionController@listaGestionMateria');
+Route::get('/listaEstudiantes','InscripcionController@listaEstudiantes');
+Route::get('/listaDetallePago','PagoController@listaDetallePago');
+Route::get('notas/create','InscripcionController@crearNotas');
+Route::post('notas/regnotas',['as' => 'notas.regNotas', 'uses' => 'InscripcionController@registrarNotas']);
 
 
 Auth::routes();
