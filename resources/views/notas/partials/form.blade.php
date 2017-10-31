@@ -2,6 +2,24 @@
     <div class="alert alert-danger" role="alert">{{ session('msj')}}</div>
 @endif
 <div class="row">
+    <div class="col-md-12 form-group {{ $errors->has('programa_id') ? 'has-error' : '' }}">
+        {!! Form::label('programa_id','Elija el Programa') !!}
+        {!! Form::select('programa_id',
+            $programas,
+            null,
+            [
+                 'required',
+                'class' => 'form-control',
+            ]
+        ) !!}
+        @if($errors->has('programa_id'))
+            <span class="help-block">
+                                <strong>{{ $errors->first('programa_id') }}</strong>
+                            </span>
+        @endif
+    </div>
+</div>
+<div class="row">
     <div class="col-md-12 form-group {{ $errors->has('materia_id') ? 'has-error' : '' }}">
         {!! Form::label('materia_id','Materia') !!}
         {!! Form::select('materia_id',

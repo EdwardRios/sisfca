@@ -45,8 +45,8 @@ class Docente extends Model
     public function setFechanacAttribute($value)
     {
         $this->attributes['fechanac'] = Carbon::createFromFormat('d/m/Y', $value);
-
     }
+
 
     public function scopeFullName($query)
     {

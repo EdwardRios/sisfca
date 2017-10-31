@@ -67,7 +67,7 @@ class InscripcionController extends Controller
             ->where('ofertas.materia_id','=', $request->materia_id)
             ->select('inscripciones.oferta_id', 'estudiantes.nombre',
                 'estudiantes.apellido','estudiantes.registro',
-                'inscripciones.nota','docentes.nombre as docente','inscripciones.estudiante_id')
+                'inscripciones.nota','docentes.nombre as docente','inscripciones.estudiante_id','inscripciones.nota')
             ->get();
 
         return response()->json($grupos);
@@ -161,8 +161,9 @@ class InscripcionController extends Controller
         //
     }
     public function crearNotas(){
+        $programas= Programa::orderBy('id')->pluck('nombre','id');//
         $materias = Materia::orderBy('id')->pluck('nombre','id');//
-        return view('notas/create',compact('materias'));
+        return view('notas/create',compact('materias','programas'));
     }
 
     public function registrarNotas(Request $request)
@@ -244,4 +245,9 @@ class InscripcionController extends Controller
         //
     }
 
+    public function listaNota()
+    {
+        $programas = Programa::orderBy('id')->pluck('nombre','id');
+        return view('notas.lista',compact('programas'));
+    }
 }

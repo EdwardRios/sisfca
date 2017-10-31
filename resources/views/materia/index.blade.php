@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="col-sm-6 col-sm-offset-3">
         <h1>Programa</h1>

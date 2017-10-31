@@ -2,12 +2,16 @@
 
 namespace App;
 
+use App\Traits\DatesTranslator;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laratrust\Traits\LaratrustUserTrait;
+
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use LaratrustUserTrait;
+    use Notifiable,DatesTranslator;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +30,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    //establecemos las relaciones con el modelo Role, ya que un usuario puede tener varios roles
+    //y un rol lo pueden tener varios usuarios
 }

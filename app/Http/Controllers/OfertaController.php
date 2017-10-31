@@ -7,6 +7,7 @@ use App\Gestion;
 use App\Http\Requests\OfertaRequest;
 use App\Materia;
 use App\Oferta;
+use App\Programa;
 use Illuminate\Http\Request;
 
 class OfertaController extends Controller
@@ -29,9 +30,9 @@ class OfertaController extends Controller
     public function create()
     {
         $docentes = Docente::fullName()->orderBy('id')->pluck('full_name','id');
-        $materias = Materia::orderBy('id')->pluck('nombre','id');
+        $programas = Programa::orderBy('id')->pluck('nombre','id');
         $gestiones = Gestion::orderBy('id')->get();
-        return view('oferta.create',compact('docentes','materias','gestiones'));
+        return view('oferta.create',compact('docentes','programas','gestiones'));
     }
 
     /**
@@ -43,8 +44,9 @@ class OfertaController extends Controller
     public function store(OfertaRequest $request)
     {
         $oferta= new Oferta($request->all());
+
         if($oferta->save()){
-            return back()->with('msj','Registro Exitoso');
+            return Redirect::back()->with('msj',1);
         }else{
             return back()->with('msj','Error');
         };

@@ -6,11 +6,18 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "arielcr/numero-a-letras": "dev-master",
+        "barryvdh/laravel-debugbar": "2.4.3",
+        "barryvdh/laravel-dompdf": "^0.8.1",
         "felixkiss/uniquewith-validator": "^3.1",
+        "geekcom/phpjasper": "^2.3",
+        "jenssegers/date": "^3.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
-        "nesbot/carbon": "^1.22"
+        "nesbot/carbon": "^1.22",
+        "santigarcor/laratrust": "4.0.*",
+        "yajra/laravel-datatables-oracle": "8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

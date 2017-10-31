@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Materia;
 use App\Programa;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ProgramaController extends Controller
 {
@@ -19,6 +20,19 @@ class ProgramaController extends Controller
         return view('programa.index',compact('programas'));
     }
 
+    public function programTable()
+    {
+        $builder = Programa::select('id','codigo','nombre','tipo');
+//        return Datatables::of(Estudiante::query()->select('nombre','apellido'))->make(true);
+        return DataTables::of($builder)
+            ->addColumn('action',function ($programa){
+                return '<a href="'.route('programa.show',$programa->id).'"class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i> Ver mas </a>&nbsp;
+                        <a href="'.route('programa.edit',$programa->id).'"class="btn btn-xs btn-success">
+                        <i class="glyphicon glyphicon-edit"></i> Editar </a>';
+            })
+            ->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *

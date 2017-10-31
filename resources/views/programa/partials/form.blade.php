@@ -4,7 +4,8 @@
         {!! Form::number('codigo', null,
             [
                 'required',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Ingrese el codigo del programa'
             ]
         ) !!}
         @if($errors->has('codigo'))
@@ -25,7 +26,7 @@
             [
                 'required',
                 'class' => 'form-control',
-                'placeholder' => 'Seleccione el tipo'
+                'placeholder' => 'Seleccione el nivel de programa'
             ]
         )!!}
         @if($errors->has('tipo'))
@@ -40,7 +41,8 @@
     {!! Form::label('nombre','Nombre') !!}
     {!! Form::text ( 'nombre',null,
         [
-            'class' => 'form-control'
+            'class' => 'form-control',
+            'placeholder' => 'Ingrese el nombre del programa...'
         ]
     ) !!}
     @if($errors->has('nombre'))

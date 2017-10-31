@@ -14,6 +14,8 @@ class Materia extends Model
     {
         return $this->belongsTo(Programa::class,'programa_id');;
     }
+
+
     public function docentes()
     {
         return $this->belongsToMany('\App\Docente','ofertas')

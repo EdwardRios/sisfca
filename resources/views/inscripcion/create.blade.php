@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-success">
@@ -88,7 +88,13 @@
                     }
                 });
             });
-            $('#estudiante_id').select2();
+            $('#estudiante_id').select2({
+                theme: "bootstrap"
+            });
+            $('#programa_id').select2({
+               theme: "bootstrap",
+               placeholder: "Elija el programa",
+            });
         });
     </script>
 @endsection

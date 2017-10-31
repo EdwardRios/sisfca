@@ -5,7 +5,8 @@
             [
                 'required',
                 'class' => 'form-control',
-                'min'=> '0'
+                'min'=> '0',
+                'placeholder'=> 'Ingrese el numero de registro...'
             ]
         ) !!}
         @if($errors->has('registro'))
@@ -20,7 +21,8 @@
             [
                 'required',
                 'class' => 'form-control',
-                'min'=> '0'
+                'min'=> '0',
+                'placeholder' => 'Ingrese el numero de carnet...'
             ]
         )!!}
         @if($errors->has('carnet'))
@@ -65,6 +67,9 @@
             [
                 'required',
                 'class' => 'form-control',
+                'pattern' => '[a-zA-Z ]+',
+                'title' => 'Solo se permiten letras',
+                'placeholder' => 'Ingrese el nombre...'
             ]
         )!!}
         @if($errors->has('nombre'))
@@ -79,6 +84,9 @@
             [
                 'required',
                 'class' => 'form-control',
+                'pattern' => '[a-zA-Z ]+',
+                'title' => 'Solo se permiten letras',
+                 'placeholder' => 'Ingrese el apellido...'
             ]
         )!!}
         @if($errors->has('apellido'))
@@ -97,7 +105,7 @@
             [
                 'required',
                 'class' => 'form-control',
-                'placeholder' => 'Seleccione genero'
+                'placeholder' => 'Seleccione el genero'
             ]
         )!!}
         @if($errors->has('sexo'))
@@ -112,10 +120,11 @@
     <div class="form-group col-md-4 {{ $errors->has('fechanac') ? 'has-error' : '' }}">
         {!! Form::label('fechanac','Fecha Nacimiento') !!}
         {!! Form::text('fechanac',
-            ($estudiante->fechanac) ? $estudiante->fechanac->format('d-m-Y') : date('d-m-Y'),
+            ($estudiante->fechanac) ? $estudiante->fechanac->format('d/m/Y') : date('d/m/Y'),
             [
                 'required',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Elija fecha de nacimiento... '
             ]
         ) !!}
         @if($errors->has('fechanac'))
@@ -129,6 +138,7 @@
         {!! Form::email('email',null,
             [
                 'class' => 'form-control',
+                'placeholder' => 'Ingrese su correo....'
             ]
         )!!}
         @if($errors->has('email'))
@@ -143,7 +153,8 @@
             [
                 'min' => '0',
                 'step' => '1',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'placeholder' => 'Ingrese su telefono....'
             ]
         )!!}
         @if($errors->has('telefono'))
@@ -158,6 +169,7 @@
     {!! Form::text('domicilio',null,
         [
             'class' => 'form-control',
+            'placeholder' => 'Ingrese la direccion de domicilio....'
         ]
     )!!}
     @if($errors->has('domicilio'))
@@ -168,10 +180,10 @@
 </div>
 
 <div class="row">
-    <div class="form-group col-md-4 {{ $errors->has('fechaegresado') ? 'has-error' : '' }}">
+    <div class="form-group col-md-3 {{ $errors->has('fechaegresado') ? 'has-error' : '' }}">
         {!! Form::label('fechaegresado','Fecha Egreso') !!}
         {!! Form::text('fechaegresado',
-            ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d-m-Y') : date('d-m-Y'),
+            ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d/m/Y'): date('d-m-Y'),
             [
                 'required',
                 'class' => 'form-control'
@@ -183,9 +195,9 @@
         </span>
         @endif
     </div>
-    <div class="form-group col-md-5 {{ $errors->has('id_carrera') ? 'has-error' : '' }}">
-        {!! Form::label('id_carrera', 'Carrera') !!}
-        {!! Form::select('id_carrera',
+    <div class="form-group col-md-4 {{ $errors->has('carrera_id') ? 'has-error' : '' }}">
+        {!! Form::label('carrera_id', 'Carrera') !!}
+        {!! Form::select('carrera_id',
             $carreras,
             null,
             [
@@ -194,21 +206,22 @@
                 'placeholder' => 'Seleccione la carrera correspondiente...'
             ]
         ) !!}
-        @if($errors->has('id_carrera'))
+        @if($errors->has('carrera_id'))
             <span class="help-block">
-            <strong>{{ $errors->first('id_carrera') }}</strong>
+            <strong>{{ $errors->first('carrera_id') }}</strong>
         </span>
         @endif
     </div>
-    <div class="form-group col-md-3 {{ $errors->has('ppg') ? 'has-error' : '' }}">
-        {!! Form::label('ppg','PPG') !!}
+    <div class="form-group col-md-5 {{ $errors->has('ppg') ? 'has-error' : '' }}">
+        {!! Form::label('ppg','PPG (Promedio Ponderado de Graduacion)') !!}
         {!! Form::number('ppg',null,
             [
                 'required',
                 'class' => 'form-control',
                 'min' => '0',
                 'max' => '100',
-                'step' => '1'
+                'step' => '1',
+                'placeholder' => 'Ingrese el PPG'
             ]
         )!!}
         @if($errors->has('ppg'))
@@ -219,4 +232,3 @@
     </div>
 
 </div>
-<button class="btn btn-primary" type="submit">Guardar</button>

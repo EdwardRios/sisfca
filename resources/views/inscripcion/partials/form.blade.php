@@ -26,7 +26,7 @@
             [
                  'required',
                 'class' => 'form-control programa',
-                'placeholder' => 'Elija el programa que desear registrar'
+                //'placeholder' => 'Elija el programa que desear registrar'
             ]
         ) !!}
         @if($errors->has('programa_id'))
@@ -68,10 +68,7 @@
         </tr>
     </tbody>
 </table>
-<div class="form-group">
-    {!! Form::label('email','Descuento') !!}
-   {!! Form::text('email',null,['class' => 'form-control']) !!}
-</div>
+
 
 
 

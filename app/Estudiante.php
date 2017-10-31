@@ -9,12 +9,13 @@ use Carbon\Carbon;
 
 class Estudiante extends Model
 {
+    protected $dates= ['fechanac','fechaegresado'];
     protected $fillable = ['carnet','registro','nombre',
                             'apellido','sexo','fechanac',
                             'email','domicilio','carrera_id','ciciudad',
                             'fechaegresado','ppg'];
     
-    public function infoEstudiante(){        
+    public function carreras(){
           return $this->belongsTo(Carrera::class,'carrera_id');;
     }
     public function scopeNombre($query,$search)
@@ -33,6 +34,10 @@ class Estudiante extends Model
     public function setFechanacAttribute($value)
     {
         $this->attributes['fechanac'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
+    public function setFechaegresadoAttribute($value){
         $this->attributes['fechaegresado'] = Carbon::createFromFormat('d/m/Y', $value);
     }
+
+
 }

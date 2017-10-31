@@ -9,7 +9,7 @@
         <select class="form-control" name="cuenta" id="cuenta" required>
             <option value="" disabled selected>Seleccione programa</option>
             @foreach($cuenta as $c)
-                <option value="{{ $c->programa_id }}" >
+                <option value="{{ $c->id }}" >
                     {{$c->programas->nombre}}
                 </option>
             @endforeach
@@ -21,7 +21,20 @@
         @endif
     </div>
 </div>
-<table class="table table-bordered">
+<div class="row" style="display: none" id="datos-pagos">
+    <div class="col-md-6">
+        <p><strong>Monto a Pagar:  </strong><span id="monto-pagar"></span></p>
+        <p><strong>Monto Pagado:  </strong><span id="monto-pagado"></span></p>
+    </div>
+    <div class="col-md-6">
+        <p><strong>Saldo: </strong><span id="saldo"></span></p>
+        <p><strong>Materias Reprobadas: </strong> <span id="materias"></span></p>
+    </div>
+    <div class="col-md-12">
+        <p><strong>Descuento: </strong> <span id="descuento"></span> %</p>
+    </div>
+</div>
+<table class="table table-bordered" id="tabla-pago" style="display: none">
     <thead>
     <tr>
         <th>Nro Deposito</th>

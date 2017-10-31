@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Cuenta;
 use App\Estudiante;
+use DebugBar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class CuentaController extends Controller
 {
@@ -13,12 +16,26 @@ class CuentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $estudiante = Estudiante::nombre($request->get('nombre'))->paginate(10);
-        return view('cuenta.index',compact('estudiante'));
+        return view('cuenta.index');
     }
 
+    public function studentAccountTable()
+    {
+        $builder = Estudiante::select('id','registro','nombre','apellido','carnet');
+//        return Datatables::of(Estudiante::query()->select('nombre','apellido'))->make(true);
+        return DataTables::of($builder)
+            ->addColumn('action',function ($estudiante){
+                return '<a href= " '.route('cuenta.show',$estudiante->id).'" class="btn btn-sm btn-primary" >
+                        VER CUENTA</a>&nbsp;&nbsp;<a href= " '.route('pago.crear',$estudiante->id).'" class="btn btn-sm btn-success" >
+                        REGISTRAR PAGO</a>';
+            })
+//            ->addColumn('action2',function ($d){
+//                return '';
+//            })
+            ->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,9 +67,18 @@ class CuentaController extends Controller
     {
         $estudiante = Estudiante::find($id);
         $cuenta = Cuenta::where('estudiante_id',$id)->get();
+
         return view('cuenta.show', compact('estudiante','cuenta'));
     }
 
+    public function datosCuenta(Request $request)
+    {
+        $datos = DB::table('cuentas')
+            ->where('id','=',$request->cuenta)
+            ->select('descuento','materias_reprobadas','monto_pagado','saldo')
+            ->get();
+        return $datos;
+    }
     /**
      * Show the form for editing the specified resource.
      *

@@ -1,0 +1,26 @@
+.center{
+    text-align: center;
+}
+.interline{
+    line-height: 30px;
+}
+.center-table{
+    width: 100%;
+
+}
+
+.bordesjuntos{
+    border-collapse: collapse;
+}
+th, td {
+    text-align: left;
+    vertical-align: top;
+
+    border: 1px solid black;  /*Bordes de la tabla*/
+
+    padding:4px;
+}
+.upperLetters{
+    font-size: 18px;
+    text-transform: uppercase;
+}

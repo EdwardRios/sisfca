@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cuenta extends Model
 {
-    protected $fillable = ['monto_programa','descuento','materias_reprobadas','estudiante_id','programa_id','saldo','monto_pagado']; //Pendiente
+    protected $fillable = ['monto_programa','descuento','materias_reprobadas',
+                            'estudiante_id','programa_id','saldo','monto_pagado','certificado_nota','certificado_no_deudor']; //Pendiente
 
     public function programas()
     {

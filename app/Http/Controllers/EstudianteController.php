@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Carrera;
 use App\Estudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Stmt\Return_;
+use Yajra\DataTables\DataTables;
+
 
 class EstudianteController extends Controller
 {
@@ -13,11 +18,28 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $estudiante = Estudiante::nombre($request->get('nombre'))->paginate(10);
-        return view('estudiante.index',compact('estudiante'));
+//        $estudiante = Estudiante::nombre($request->get('nombre'))->paginate(10);
+//        return view('estudiante.index',compact('estudiante'));
+        return view('estudiante.index');
     }
+    public function data()
+    {
+        $builder = Estudiante::select('id','registro','nombre','apellido','sexo','carnet','ciciudad');
+//        return Datatables::of(Estudiante::query()->select('nombre','apellido'))->make(true);
+        return Datatables::of($builder)
+            ->editColumn('sexo',function ($e){
+                if ($e->sexo== 'F') return 'Femenino';
+                else return 'Masculino';
+            })
+            ->addColumn('action',function ($estudiante){
+                return '<a href="'.route('estudiante.edit',$estudiante->id).'"class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i> Editar</a>';
+            })
+            ->make(true);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +50,6 @@ class EstudianteController extends Controller
     {
         $carreras = Carrera::orderBy('nombre')->pluck('nombre','id');
         return view('estudiante.create',compact('carreras'));
-
     }
 
     /**
@@ -52,9 +73,14 @@ class EstudianteController extends Controller
         $estudiante->domicilio= $request->get('domicilio');
         $estudiante->fechaegresado= $request->get('fechaegresado');
         $estudiante->ppg= $request->get('ppg');
-        $estudiante->id_carrera= $request->get('id_carrera');
-        $estudiante->save();
-        return redirect()->route('estudiante.show',['estudiante'=> $estudiante->id]);
+        $estudiante->carrera_id= $request->get('carrera_id');
+        if($estudiante->save()){
+            return Redirect::back()->with('msj',1);;
+        }else{
+            return back()->with('msj','Error');
+        };
+//        $estudiante->save();
+//        return redirect()->route('estudiante.show',['estudiante'=> $estudiante->id]);
     }
 
     /**
@@ -69,6 +95,12 @@ class EstudianteController extends Controller
         return view('pago.show', compact('estudiante'));
     }
 
+    public function detallesPDF()
+    {
+
+        //return view()
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -77,7 +109,9 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $carreras = Carrera::orderBy('nombre')->pluck('nombre','id');
+        $estudiante = Estudiante::where('id',$id)->first();
+        return view('estudiante.edit',compact('estudiante','carreras'));
     }
 
     /**
@@ -89,7 +123,10 @@ class EstudianteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estudiante = Estudiante::where('id',$id)->first();
+        $estudiante->fill($request->all());
+        $estudiante->save();
+        return Redirect::back()->with('msj',2);
     }
 
     /**

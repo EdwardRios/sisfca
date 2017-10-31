@@ -11,21 +11,20 @@
     {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
     <title>Sistema Ciencias Agricolas</title>
     <!-- Styles -->
+    <link rel="shortcut icon" href="{{{ asset('img/FClogo.png') }}}">
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <link href="{{ asset('dist/css/select2.css') }}" rel="stylesheet">
     <script src="{{asset('dist/js/select2.js')}}"></script>
+    <script src="{{asset('dist/js/i18n/es.js')}}"></script> <!--Select2 al idioma español-->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-datepicker3.css') }}" rel="stylesheet"> <!--Calendario-->
+    <link href="{{ asset("css/styles.css") }}" rel="stylesheet">
     <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('locales/bootstrap-datepicker.es.min.js')}}" charset="UTF-8"></script>
-
-    {{--<script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>--}}
-
-
-
+    <script src="{{ url('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')}}" charset="UTF-8"></script>
+    <link href="{{ url('https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -44,7 +43,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Postgrado Cs. Agricolas
+                    <img src="{{ asset('img/brand.png') }}" alt="Postgrado Cs. Agricolas">
                     {{--{{ config('app.name', 'Postgrado Cs. Agricolas') }}--}}
                 </a>
             </div>
@@ -91,22 +90,25 @@
                                 <li><a href="{{ route('cuenta.index') }}">Cuentas por cobrar</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('notas/create') }}">Notas</a></li>
+
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes Notas
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Notas
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Lista Notas</a></li>
-                                <li><a href="#">Cuentas por cobrar</a></li>
-                                <li><a href="#">Cuentas por cobrar</a></li>
-                                <li><a href="#">Cuentas por cobrar</a></li>
+                                <li><a href="{{ url('notas/create') }}">Registrar Notas</a></li>
+                                <li><a href="{{ route('nota.lista') }}">Lista Notas</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('reporte.certificado') }}">Certificado de Notas</a></li>
+                                <li><a href="{{ route('reporte.noDeudor') }}">Certificado No Deudor</a></li>
+                                <li><a href="{{ route('reporte.actaNotas') }}">Acta de notas</a></li>
                             </ul>
                         </li>
                     @endif
-
-
-                    <li><a href=""></a></li>
-                    <li><a href=""></a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">

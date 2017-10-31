@@ -1,20 +1,25 @@
 
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
-    <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-success">
-            <div class="panel-heading"> Nuevo Docente </div>
-            <div class="panel-body">
-                {!! Form::model(
-                       $docente = new \App\Docente(),
-                        [
-                            'route' =>'docente.store'
-                        ]
-                 )!!}
-                @include('docente.partials.form')
-                <button class="btn btn-primary center-block" type="submit">Registrar datos</button>
-                {!! Form::close() !!}
+    <div class="row">
+        <div class="col-md-10 ">
+            <div class="panel panel-success">
+                <div class="panel-heading"> Nuevo Docente</div>
+                <div class="panel-body">
+                    {!! Form::model(
+                           $docente = new \App\Docente(),
+                            [
+                                'route' =>'docente.store',
+                                'id'=>'formulario'
+                            ]
+                     )!!}
+                    @include('docente.partials.form')
+                    <button class="btn btn-primary center-block" type="submit">Registrar datos</button>
+                    @include('layouts.modal')
+                    {!! Form::close() !!}
+
+                </div>
             </div>
         </div>
     </div>
@@ -26,6 +31,16 @@
                 startView: 2,
                 language: "es"
             });
+            $(':input').keyup(function() {
+                this.value = this.value.toLocaleUpperCase();
+            });
+//            $('#formulario').submit(function () {
+//                $('#myModal').modal('toggle');
+//            });
+            @if(Session::get('msj'))
+                $('#myModal').modal('show');
+            @endif
         });
     </script>
+
 @endsection

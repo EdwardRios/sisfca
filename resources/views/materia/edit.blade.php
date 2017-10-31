@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
     <div class="container"><h1 CLASS="text-center">Editar Docente {{ $docente->name }}</h1></div>
     <div class="col-md-8 col-md-offset-2">

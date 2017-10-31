@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Estudiante;
 use App\Http\Requests\StoreDocente;
 use App\Http\Requests\UpdateDocente;
+use App\Programa;
+use Illuminate\Support\Facades\Redirect;
+use PDF;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Docente;
+use Yajra\DataTables\DataTables;
+
 class DocenteController extends Controller
 {
     public function __construct()
@@ -20,12 +26,30 @@ class DocenteController extends Controller
 	 */
 	public function index(Request $request)
 	{
-
 		$docentes = Docente::nombre($request->get('nombre'))->orderBy('id','desc')->paginate(10);
 		return view('docente.index',compact('docentes'));
 
 	}
+    public function data()
+    {
+        $builder = Docente::select('id','codigo','nombre','apellido','sexo','carnet','grado');
+//        return Datatables::of(Estudiante::query()->select('nombre','apellido'))->make(true);
+        return DataTables::of($builder)
+            ->editColumn('sexo',function ($e){
+                if ($e->sexo== 'F') return 'Femenino';
+                else return 'Masculino';
+            })
+            ->addColumn('action',function ($docente){
+                return '<a href="./docente/'.$docente->id.'/edit"class="btn btn-xs btn-success">
+                        <i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;<a href="./docente/'.$docente->id.'" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i> Ver mas</a>';
+            })
+//            ->addColumn('action2',function ($d){
+//                return '';
+//            })
+            ->make(true);
 
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -58,8 +82,12 @@ class DocenteController extends Controller
 //		$docente->telefono = $request->get('telefono');
 //		$docente->email = $request->get('email');
 //		$docente->domicilio = $request->get('domicilio');
-		$docente->save();
-		return redirect()->route('docente.show', ['docente' => $docente->id]);
+		if ($docente->save()){
+            return Redirect::back()->with('msj',1);
+        }else{
+            return Redirect::back()->with('msj',2);
+        };
+//		return redirect()->route('docente.show', ['docente' => $docente->id]);
 	}
 
 	/**

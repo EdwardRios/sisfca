@@ -7,6 +7,7 @@ use App\Estudiante;
 use App\Pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Monolog\Handler\ElasticSearchHandler;
 
 class PagoController extends Controller
 {
@@ -44,11 +45,31 @@ class PagoController extends Controller
      */
     public function store(Request $request)
     {
-        $pago = new Pago($request->all());
-        if ($pago->save())
-            return back()->with('msj','Registro Exitoso');
-        else
-            return back()->with('msj','Registro Exitoso');
+        //Obtener id de la cuenta para que sume a su saldo
+        $pago = new Pago();
+        $cuenta = Cuenta::where('id',$request->get('cuenta_id'))->first();
+        $sum = 0;
+        $pago->nro_deposito = $request->get('nro_deposito');
+        $pago->fecha_deposito = $request->get('fecha_deposito');
+        $pago->cuenta_id = $request->get('cuenta_id');
+        $pago->monto = $request->get('monto');
+        if (($request->get('glosa'))=='nota'){
+            $pago->glosa = 'Certificado de notas';
+            $cuenta->certificado_nota = $request->get('monto');
+        }elseif ($request->get('glosa')=='nodeudor'){
+            $pago->glosa = 'Certificado de No Deudor';
+            $cuenta->certificado_no_deudor = $request->get('monto');
+        }elseif ($request->get('glosa')== 'otro') {
+            $pago->glosa = $request->get('glosatxt');
+            $sum = $cuenta->monto_pagado;
+            $cuenta->monto_pagado= $sum + $request->get('monto');
+        }
+
+        if ($pago->save()) {
+            $cuenta->save();
+            return back()->with('msj', 'Registro Exitoso');
+        }else
+            return back()->with('msj','Error al guardar datos');
 
     }
 
@@ -68,7 +89,7 @@ class PagoController extends Controller
         $pagos = DB::table('pagos')
             ->join('cuentas','cuentas.id','=','pagos.cuenta_id')
             ->where('cuentas.estudiante_id', $request->estudiante_id)
-            ->where('cuentas.programa_id',$request->programa_id)
+            ->where('cuentas.id',$request->cuentaid)
             //->where('cuentas.id',$request->cuenta_id)
             ->select('pagos.*')
             ->get();
@@ -109,3 +130,4 @@ class PagoController extends Controller
         //
     }
 }
+
