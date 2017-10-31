@@ -211,7 +211,7 @@
               <li><a href="{{ route('inscripcion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Inscripcion Estudiante</a></li>
           </ul>
         </li>
-        @role('academico')
+        {{--@role('academico')--}}
         <li class="treeview">
               <a href="#">
                   <i class="fa fa-list-alt"></i> <span>Programacion</span>
@@ -229,7 +229,7 @@
                   <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Oferta Materia</a></li>
               </ul>
         </li>
-        @endrole
+        {{--@endrole--}}
           <li class="treeview">
               <a href="#">
                   <i class="fa fa-money"></i> <span>Contabilidad</span>
