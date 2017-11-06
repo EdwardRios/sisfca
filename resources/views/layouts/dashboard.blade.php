@@ -25,9 +25,6 @@
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-
-
   {{--<!--<script src="{{ asset('js/jquery.js') }}"></script>-->--}}
 
   <![endif]-->
@@ -199,7 +196,6 @@
               <li><a href="{{ route('programa.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Programa</a></li>
               <li><a href="{{ route('materia.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Materias</a></li>
               <li><a href="{{ route('gestion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Gestion</a></li>
-
           </ul>
 
         </li>
@@ -215,6 +211,7 @@
             <li><a href="{{ route('docente.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Docente</a></li>
             <li><a href="{{ route('estudiante.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Estudiante</a></li>
             <li><a href="{{ route('programa.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar programa</a></li>
+            <li><a href="{{ route('gestion.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Gestion</a></li>
           </ul>
         </li>
         {{--@role('academico')--}}
@@ -227,8 +224,9 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{ route('inscripcion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Inscripcion Estudiante</a></li>
-                <li><a href="{{ route('gestion.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Gestion</a></li>
                 <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Oferta Materia</a></li>
+                <li><a href="{{ url('notas/create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Notas</a></li>
+                <li><a href="{{ route('nota.lista') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Notas</a></li>
               </ul>
         </li>
         {{--@endrole--}}
@@ -241,18 +239,6 @@
               </a>
               <ul class="treeview-menu">
                   <li><a href="{{ route('cuenta.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Cuentas por cobrar</a></li>
-              </ul>
-          </li>
-          <li class="treeview">
-              <a href="#">
-                  <i class="fa fa-pencil-square-o"></i> <span>Notas</span>
-                  <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-              </a>
-              <ul class="treeview-menu">
-                  <li><a href="{{ url('notas/create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Notas</a></li>
-                  <li><a href="{{ route('nota.lista') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Notas</a></li>
               </ul>
           </li>
           <li class="treeview">

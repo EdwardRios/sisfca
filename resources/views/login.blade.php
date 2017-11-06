@@ -27,11 +27,11 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>Softsed </b>SimpleAdminLTE</a>
+    <img class="img-responsive" src="{{asset('img/smallLogoUP.png')}}" alt="Logo Postgrado">
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Ingrese sus datos para ingresar al sistema</p>
 
     <form action="index2.html" method="post">
       <div class="form-group has-feedback">

@@ -183,7 +183,7 @@
     <div class="form-group col-md-3 {{ $errors->has('fechaegresado') ? 'has-error' : '' }}">
         {!! Form::label('fechaegresado','Fecha Egreso') !!}
         {!! Form::text('fechaegresado',
-            ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d/m/Y'): date('d-m-Y'),
+            ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d/m/Y'): date('d/m/Y'),
             [
                 'required',
                 'class' => 'form-control'

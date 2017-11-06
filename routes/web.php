@@ -19,7 +19,7 @@ Route::get('/', function () {
     }
 });
 Route::get('dash',function (){
-   return view('layouts.dashboard');
+   return view('login');
 });
 
 Route::resource('carrera', 'CarrerasController' );

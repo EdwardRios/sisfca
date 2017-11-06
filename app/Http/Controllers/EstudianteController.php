@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Carrera;
 use App\Estudiante;
+use App\Http\Requests\StoreEstudiante;
+use App\Http\Requests\UpdateEstudiante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +15,10 @@ use Yajra\DataTables\DataTables;
 
 class EstudianteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +64,7 @@ class EstudianteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEstudiante $request)
     {
         $estudiante = new Estudiante();
         $estudiante->registro = $request->get('registro');
@@ -121,12 +127,16 @@ class EstudianteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEstudiante $request, $id)
     {
         $estudiante = Estudiante::where('id',$id)->first();
         $estudiante->fill($request->all());
-        $estudiante->save();
-        return Redirect::back()->with('msj',2);
+        if($estudiante->save()){
+            return Redirect::back()->with('msj',2);
+        }else{
+           return back()->with('msj','Error');;
+        }
+
     }
 
     /**
