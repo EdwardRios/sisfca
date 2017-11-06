@@ -92,57 +92,57 @@
              <li><a href="{{ route('login') }}">Login</a></li>
              <li><a href="{{ route('register') }}">Register</a></li>
              @else
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="{{ route('logout') }}" class="dropdown-toggle" data-toggle="dropdown"
               {{--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">--}}
-              <span class="hidden-xs">{{ Auth::user()->name }} <span class="caret"></span></span>
+
+                 onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                Cerrar sesion
+              <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                    style="display: none;">
+                {{ csrf_field() }}
+              </form>
+              {{--<span class="hidden-xs">{{ Auth::user()->name }} <span class="caret"></span></span>--}}
+
             </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
+            {{--<ul class="dropdown-menu">--}}
+              {{--<!-- User image -->--}}
+              {{--<li class="user-header">--}}
                 {{--<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">--}}
 
-                <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <ul>
-                  <li>
-                    <a href="{{ route('logout') }}"
-                     onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                      Logout
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                      style="display: none;">
-                      {{ csrf_field() }}
-                    </form>
-                  </li></ul>
-                </div>
-              </li>
-            </ul>
+                {{--<p>--}}
+                  {{--Alexander Pierce - Web Developer--}}
+                  {{--<small>Member since Nov. 2012</small>--}}
+                {{--</p>--}}
+              {{--</li>--}}
+              {{--<!-- Menu Body -->--}}
+              {{--<li class="user-body">--}}
+                {{--<div class="row">--}}
+                  {{--<div class="col-xs-4 text-center">--}}
+                    {{--<a href="#">Followers</a>--}}
+                  {{--</div>--}}
+                  {{--<div class="col-xs-4 text-center">--}}
+                    {{--<a href="#">Sales</a>--}}
+                  {{--</div>--}}
+                  {{--<div class="col-xs-4 text-center">--}}
+                    {{--<a href="#">Friends</a>--}}
+                  {{--</div>--}}
+                {{--</div>--}}
+                {{--<!-- /.row -->--}}
+              {{--</li>--}}
+              {{--<!-- Menu Footer-->--}}
+              {{--<li class="user-footer">--}}
+                {{--<div class="pull-left">--}}
+                  {{--<a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                {{--</div>--}}
+                {{--<div class="pull-right">--}}
+                  {{--<ul>--}}
+                  {{--<li>--}}
+                    {{----}}
+                  {{--</li></ul>--}}
+                {{--</div>--}}
+              {{--</li>--}}
+            {{--</ul>--}}
             @endif
           </li>
           <!-- Control Sidebar Toggle Button -->
@@ -183,32 +183,38 @@
       {{--</form>--}}
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
+      {{--Menu principal --}}
       <ul class="sidebar-menu">
         <li class="header">MENU PRINCIPAL</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-user"></i> <span>Docente</span>
+            <i class="fa fa-user"></i> <span>Nuevo registro</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
               <li><a href="{{ route('docente.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Docente</a></li>
-              <li><a href="{{ route('docente.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Docente</a></li>
+              <li><a href="{{ route('estudiante.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Estudiante</a></li>
+              <li><a href="{{ route('programa.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Programa</a></li>
+              <li><a href="{{ route('materia.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Materias</a></li>
+              <li><a href="{{ route('gestion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Gestion</a></li>
+
           </ul>
+
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-child"></i> <span>Estudiante</span>
+            <i class="fa fa-child"></i> <span>Ver lista</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-              <li><a href="{{ route('estudiante.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Estudiante</a></li>
-              <li><a href="{{ route('estudiante.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Estudiante</a></li>
-              <li><a href="{{ route('inscripcion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Inscripcion Estudiante</a></li>
+            <li><a href="{{ route('docente.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Docente</a></li>
+            <li><a href="{{ route('estudiante.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Estudiante</a></li>
+            <li><a href="{{ route('programa.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar programa</a></li>
           </ul>
         </li>
         {{--@role('academico')--}}
@@ -220,13 +226,9 @@
             </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="{{ route('programa.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Programa</a></li>
-                  <li><a href="{{ route('programa.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar programa</a></li>
-                  {{--<li><a href="{{ route('programa.show') }}">Mostrar programa</a></li>--}}
-                  <li><a href="{{ route('materia.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Materias</a></li>
-                  <li><a href="{{ route('gestion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Gestion</a></li>
-                  <li><a href="{{ route('gestion.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Gestion</a></li>
-                  <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Oferta Materia</a></li>
+                <li><a href="{{ route('inscripcion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Inscripcion Estudiante</a></li>
+                <li><a href="{{ route('gestion.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Gestion</a></li>
+                <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Oferta Materia</a></li>
               </ul>
         </li>
         {{--@endrole--}}

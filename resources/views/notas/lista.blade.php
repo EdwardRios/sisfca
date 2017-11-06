@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-success">
-                <div class="panel-heading">Registro de Notas</div>
+                <div class="panel-heading">Lista de Notas</div>
                 <div class="panel-body">
                     @include('notas.partials.flist')
                 </div>

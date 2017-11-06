@@ -18,7 +18,7 @@ class CreateEstudiantesTable extends Migration
             $table->timestamps();
             $table->integer('carnet')->unique();
             $table->string('ciciudad');
-            $table->string('registro',8)->unique();
+            $table->string('registro',9)->unique();
             $table->string('nombre',50);
             $table->string('apellido',50);            
             $table->char('sexo',1);

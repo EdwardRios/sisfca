@@ -12,7 +12,7 @@
 <br>
     <h2 class="center">CERTIFICADO DE NO DEUDOR</h2>
     <p>
-        La Unidad de Postgrado de la Facultad de Ciencias Agricolas de la Universidad Autonoma Gabrial Rene Moreno
+        La Unidad de Postgrado de la Facultad de Ciencias Agricolas de la Universidad Autonoma Gabriel Rene Moreno
     </p>
     <p>CERTIFICA: </p>
     <p>

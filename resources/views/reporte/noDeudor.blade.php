@@ -2,7 +2,7 @@
 @section('content')
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-success">
-            <div class="panel-heading text-center">Certificado de Notas</div>
+            <div class="panel-heading text-center">Certificado de No Deudor</div>
             <div class="panel-body">
                 {!! Form::model(
                         null,
@@ -23,7 +23,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#estudiante_id').select2({
-                placeholder: "Seleccione",
+                placeholder: "Seleccione el estudiante...",
                 allowClear: true,
                 theme: "bootstrap"
             });

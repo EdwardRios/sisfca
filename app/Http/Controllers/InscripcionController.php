@@ -113,6 +113,7 @@ class InscripcionController extends Controller
             $account = new Cuenta();
             $account->estudiante_id= $estudiante;
             $account->programa_id = $request->get('programa_id');
+            $account->gestion_id = $request->get('gestion_id');
             if ($tipoPrograma == 'Diplomado') $account->monto_programa = 8000;
             elseif($tipoPrograma == 'Maestria') $account->monto_programa = 21000;
             elseif($tipoPrograma == 'Especialidad') $account->monto_programa = 12000;

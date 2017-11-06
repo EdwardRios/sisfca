@@ -63,6 +63,9 @@
                     }
                 });
             });
+            $(':input').keyup(function() {
+                this.value = this.value.toLocaleUpperCase();
+            });
         });
     </script>
 @endsection

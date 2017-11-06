@@ -28,8 +28,11 @@ class CuentaController extends Controller
         return DataTables::of($builder)
             ->addColumn('action',function ($estudiante){
                 return '<a href= " '.route('cuenta.show',$estudiante->id).'" class="btn btn-sm btn-primary" >
-                        VER CUENTA</a>&nbsp;&nbsp;<a href= " '.route('pago.crear',$estudiante->id).'" class="btn btn-sm btn-success" >
-                        REGISTRAR PAGO</a>';
+                        VER CUENTA</a>&nbsp;&nbsp;
+                        <a href= " '.route('pago.crear',$estudiante->id).'" class="btn btn-sm btn-success" >
+                        REGISTRAR PAGO</a>&nbsp;&nbsp;
+                        <a href= " '.route('pago.crear',$estudiante->id).'" class="btn btn-sm btn-success" >
+                        ASIGNAR DESCUENTO</a>';
             })
 //            ->addColumn('action2',function ($d){
 //                return '';
@@ -67,7 +70,6 @@ class CuentaController extends Controller
     {
         $estudiante = Estudiante::find($id);
         $cuenta = Cuenta::where('estudiante_id',$id)->get();
-
         return view('cuenta.show', compact('estudiante','cuenta'));
     }
 

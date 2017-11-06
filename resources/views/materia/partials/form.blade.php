@@ -6,6 +6,7 @@
         {!! Form::label('codigo','Codigo') !!}
         {!! Form::text('codigo', null,
             [
+                'placeholder'=>'Ingrese el nuevo codigo de materia',
                 'required',
                 'class' => 'form-control'
             ]
@@ -28,7 +29,7 @@
             [
                 'required',
                 'class' => 'form-control tipoPrograma',
-                'placeholder' => 'Seleccione el programa'
+                'placeholder' => 'Seleccione el tipo de programa'
             ]
         )!!}
         @if($errors->has('tipoPrograma'))
@@ -46,6 +47,7 @@
         [
             'required',
             'class' => 'form-control nombrePrograma',
+            'placeholder' => 'Seleccione el programa'
         ]
     )!!}
     @if($errors->has('programa_id'))

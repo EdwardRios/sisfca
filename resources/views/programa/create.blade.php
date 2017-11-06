@@ -20,3 +20,12 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    <script>
+        $(document).ready(function (){
+            $(':input').keyup(function() {
+                this.value = this.value.toLocaleUpperCase();
+            });
+        });
+    </script>
+@endsection
