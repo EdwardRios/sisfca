@@ -185,7 +185,7 @@
         <li class="header">MENU PRINCIPAL</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-user"></i> <span>Nuevo registro</span>
+            <i class="fa fa-user"></i> <span>Registrar Datos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -202,7 +202,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-child"></i> <span>Ver lista</span>
+            <i class="fa fa-child"></i> <span>Consultar Datos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

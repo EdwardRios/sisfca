@@ -18,8 +18,8 @@
         [
             'required',
             'class' => 'form-control',
-            'pattern' => '[a-zA-ZñÑ ]{3,50}',
-            'title' => 'Ingrese solo letras. Min:3 y Max:10'
+            'pattern' => '[a-zA-ZñÑ ]{3,60}',
+            'title' => 'Ingrese solo letras. Min:3'
         ]
     ) !!}
     @if($errors->has('nombre'))

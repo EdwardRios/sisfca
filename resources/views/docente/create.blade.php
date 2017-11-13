@@ -31,9 +31,9 @@
                 startView: 2,
                 language: "es"
             });
-            $(':input').keyup(function() {
-                this.value = this.value.toLocaleUpperCase();
-            });
+//            $(':input').keyup(function() {
+//                this.value = this.value.toUpperCase();
+//            });
 //            $('#formulario').submit(function () {
 //                $('#myModal').modal('toggle');
 //            });

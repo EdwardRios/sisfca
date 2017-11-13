@@ -82,6 +82,7 @@ class DocenteController extends Controller
 //		$docente->telefono = $request->get('telefono');
 //		$docente->email = $request->get('email');
 //		$docente->domicilio = $request->get('domicilio');
+//        dd($docente);
 		if ($docente->save()){
             return Redirect::back()->with('msj',1);
         }else{

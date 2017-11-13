@@ -18,4 +18,17 @@ class Gestion extends Model
         return $this->belongsToMany('\App\Docentes','ofertas')
             ->withPivot('materia_id','fecha_inicio','fecha_fin');
     }
+        public function cuentas()
+    {
+        return $this->hasMany(Cuenta::class,'gestion_id');
+    }
+
+    public function getGrupoAttribute($value)
+    {
+        return strtoupper($value);
+    }
+    public function setGrupoAttribute($value)
+    {
+        $this->attributes['grupo'] = strtoupper($value);
+    }
 }

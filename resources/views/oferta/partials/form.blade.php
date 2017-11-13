@@ -1,5 +1,5 @@
 @if(session()->has('msj'))
-    <div class="alert alert-danger" role="alert">{{ session('msj')}}</div>
+    <div class="alert alert-success" role="alert">Registro exitoso</div>
 @endif
 <div class="row">
     <div class="col-md-12 form-group {{ $errors->has('programa_id') ? 'has-error' : '' }}">
@@ -26,7 +26,6 @@
             [
                 'required',
                 'class' => 'form-control',
-
             ]
         ) !!}
         @if($errors->has('materia_id'))
@@ -63,12 +62,13 @@
             [
                 'required',
                 'class' => 'form-control',
+                'placeholder' => 'Seleccione el docente...'
             ]
         ) !!}
         @if($errors->has('docente_id'))
             <span class="help-block">
-                                <strong>{{ $errors->first('docente_id') }}</strong>
-                            </span>
+                <strong>{{ $errors->first('docente_id') }}</strong>
+            </span>
         @endif
     </div>
 </div>

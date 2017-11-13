@@ -10,7 +10,10 @@
             <option value="" disabled selected>Seleccione programa</option>
             @foreach($cuenta as $c)
                 <option value="{{ $c->id }}" >
-                    {{$c->programas->nombre}}
+                    {{$c->programas->nombre}}&nbsp;- &nbsp; A&ntilde;o: {{$c->gestiones->anho}}
+                    &nbsp; Grupo: {{$c->gestiones->grupo}}
+                    &nbsp; Edicion: {{$c->gestiones->edicion}}
+                    &nbsp; Version: {{$c->gestiones->version}}
                 </option>
             @endforeach
         </select>

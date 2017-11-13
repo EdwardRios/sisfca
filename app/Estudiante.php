@@ -38,6 +38,30 @@ class Estudiante extends Model
     public function setFechaegresadoAttribute($value){
         $this->attributes['fechaegresado'] = Carbon::createFromFormat('d/m/Y', $value);
     }
-
+    public function setNombreAttibute($value)
+    {
+        $this->attributes['nombre'] = strtoupper($value);
+    }
+    public function setApellidoAttibute($value)
+    {
+        $this->attributes['apellido'] = strtoupper($value);
+    }
+    public function setDireccionAttibute($value)
+    {
+        $this->attributes['direccion'] = strtoupper($value);
+    }
+    public function getNombreAttribute($value)
+    {
+        return strtoupper($value);
+    }
+    //Convertir en mayuscula el apellido ingresado mediante formulario
+    public function getApellidoAttribute($value)
+    {
+        return strtoupper($value);
+    }
+    public function getDireccionAttribute($value)
+    {
+        return strtoupper($value);
+    }
 
 }

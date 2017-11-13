@@ -37,8 +37,9 @@ class GestionController extends Controller
     public function store(Request $request)
     {
         $gestion = new Gestion($request->all());
+
         $gestion->save();
-        return redirect()->route('gestion.show',['gestion'=>$gestion->id]);
+        return redirect()->route('gestion.index');
     }
 
     /**

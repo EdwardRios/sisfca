@@ -16,4 +16,7 @@ class Cuenta extends Model
     public function pagos(){
         return $this->BelongsTo(Pago::class,'cuenta_id');;
     }
+    public function gestiones(){
+        return $this->BelongsTo(Gestion::class,'gestion_id');;
+    }
 }

@@ -33,7 +33,7 @@ class InscripcionController extends Controller
     {
         $estudiantes = Estudiante::fullName()->orderBy('id')->pluck('full_name','id');
         $programas = Programa::orderBy('id')->pluck('nombre','id');
-//        $gestiones = Gestion::orderBy('id')->get();
+//    $gestiones = Gestion::orderBy('id')->get();
         return view('inscripcion.create',compact('programas','estudiantes','gestiones'));
     }
     public function listaGestionPrograma(Request $request)
@@ -110,19 +110,24 @@ class InscripcionController extends Controller
                     $inscripcion->save();
             }
             //Crear cuenta del estudiante
-            $account = new Cuenta();
-            $account->estudiante_id= $estudiante;
-            $account->programa_id = $request->get('programa_id');
-            $account->gestion_id = $request->get('gestion_id');
-            if ($tipoPrograma == 'Diplomado') $account->monto_programa = 8000;
-            elseif($tipoPrograma == 'Maestria') $account->monto_programa = 21000;
-            elseif($tipoPrograma == 'Especialidad') $account->monto_programa = 12000;
-            $account->save();
+            $getAccount = Cuenta::where([['estudiante_id','=',$estudiante],
+                                         ['programa_id','=',$request->get('programa_id')],
+                                         ['gestion_id','=',$request->get('gestion_id')]
+                                        ])->first();
+            if(is_null($getAccount)) { //No tiene modulos inscritos en este programa y gestion
+                $account = new Cuenta();
+                $account->estudiante_id = $estudiante;
+                $account->programa_id = $request->get('programa_id');
+                $account->gestion_id = $request->get('gestion_id');
+                if ($tipoPrograma == 'Diplomado') $account->monto_programa = 8000;
+                elseif ($tipoPrograma == 'Maestria') $account->monto_programa = 21000;
+                elseif ($tipoPrograma == 'Especialidad') $account->monto_programa = 12000;
+                $account->save();
+            }
             DB::commit();
             return back()->with('msj','Registro Exitoso');
         }catch (\exception $e){
             DB::rollback();
-            dd($e);
             return back()->with('msj','Error al registrar datos : Datos ingresados ya existen');
         }
 
@@ -174,17 +179,22 @@ class InscripcionController extends Controller
             $arrayEstudiante= $request->get('estudianteid');
             $arrayOfertas= $request->get('ofertaid'); //Obtiene el array de las ofertas_id
             $arrayNotas = $request->get('notas'); //Obtiene el array de los estudiantes
-            $materia_id=$request->get('materia_id'); //Obtengo id del form
+            $materia_id = $request->get('materia_id'); //Obtengo id del form
+            $gestion_id = $request->get('gestion_id');
             $cont=0;
             foreach($arrayNotas as $nota){
-                $inscripcion = Inscripcion::where([['oferta_id','=',$arrayOfertas[$cont]],['estudiante_id','=',$arrayEstudiante[$cont]]])->first();
+                $inscripcion = Inscripcion::where([['oferta_id','=',$arrayOfertas[$cont]],
+                                                   ['estudiante_id','=',$arrayEstudiante[$cont]]])->first();
                 $inscripcion->nota = $nota;
                 //Quitar descuento
                 if ($nota < 64){
                     $programaId = DB::table('materias')
                                     ->where('id',$materia_id)
                                     ->value('programa_id'); //Obtener el programa de la materia
-                    $cuentaEstudiante = Cuenta::where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])->first();
+                    $cuentaEstudiante = Cuenta::where([['estudiante_id','=', $arrayEstudiante[$cont]],
+                                                        ['programa_id','=',$programaId],
+                                                        ['gestion_id','=',$gestion_id]
+                                                        ])->first();
                     $saldo = Cuenta::where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])->value('saldo');
                     $matReprobada = DB::table('cuentas')
                                         ->where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])
