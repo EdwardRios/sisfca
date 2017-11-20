@@ -35,7 +35,7 @@
                     success: function(data){
                         console.log('felicidades');
                         console.log(data);
-                        op+='<option value="0" selected disabled>Elija un programa</option>';
+                        op+='<option value="0" selected disabled>Elija la gestion correspondiente....</option>';
                         for(var i=0;i<data.length;i++){
                             op+='<option value="'+data[i].id+'">Grupo:'+data[i].grupo+' ' +
                                 '&nbsp; Edicion:'+data[i].edicion+' ' +
@@ -93,7 +93,7 @@
             });
             $('#programa_id').select2({
                theme: "bootstrap",
-               placeholder: "Elija el programa",
+//               placeholder: "Elija el programa",
             });
         });
     </script>

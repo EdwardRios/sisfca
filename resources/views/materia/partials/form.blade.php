@@ -1,6 +1,6 @@
-@if(session()->has('msj'))
-    <div class="alert alert-danger" role="alert">ERROR : {{ session('msj')}}</div>
-@endif
+{{--@if(session()->has('msj'))--}}
+    {{--<div class="alert alert-danger" role="alert">ERROR : {{ session('msj')}}</div>--}}
+{{--@endif--}}
 <div class="row">
     <div class="form-group col-md-6 {{ $errors->has('codigo') ? 'has-error' : '' }}">
         {!! Form::label('codigo','Codigo') !!}

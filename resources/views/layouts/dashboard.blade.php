@@ -239,6 +239,9 @@
               </a>
               <ul class="treeview-menu">
                   <li><a href="{{ route('cuenta.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Cuentas por cobrar</a></li>
+                  <li><a href="{{ route('estadoCuenta') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Ver estado de cuentas</a></li>
+                  <li><a href="{{ route('pagos.crear') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar pago</a></li>
+                  <li><a href="{{ route('asignarDescuento') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Asignar Descuento</a></li>
               </ul>
           </li>
           <li class="treeview">

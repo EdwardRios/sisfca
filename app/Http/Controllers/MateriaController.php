@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Materia;
 use App\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MateriaController extends Controller
 {
@@ -53,8 +54,11 @@ class MateriaController extends Controller
         elseif (($tipoPro->tipo)=='Especialidad' && $cantPro>11) return back()->with('msj','El programa elegido no puede tener mas de 12 materias');
         else {
             $materia= new Materia($request->all());
-            $materia->save();
-            return redirect()->route('materia.show',['materia'=> $materia->id]);
+            if($materia->save()){
+                return Redirect::back()->with('msj',1);;
+            }else{
+                return back()->with('msj','Error');
+            };
         }
     }
 

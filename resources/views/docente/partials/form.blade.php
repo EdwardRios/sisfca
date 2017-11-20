@@ -3,7 +3,8 @@
     {!! Form::number('codigo', null,
         [
             'required',
-            'class' => 'form-control'
+            'class' => 'form-control',
+            'min' => '1'
         ]
     ) !!}
     @if($errors->has('codigo'))
@@ -66,15 +67,16 @@
         {!! Form::label('ciciudad','Carnet Ciudad') !!}
         {!! Form::select('ciciudad',
             [
-                'Santa Cruz'=>'Santa Cruz',
-                'Cochabamba'=>'Cochabamba',
-                'Oruro'=>'Oruro',
-                'Beni'=>'Beni',
-                'Pando'=>'Pando',
-                'La Paz'=>'La Paz',
-                'Potosi'=>'Potosi',
-                'Tarija'=>'Tarija',
-                'Chuquisaca'=>'Chuquisaca',
+                'SC' => 'Santa Cruz',
+                'CB'=>'Cochabamba',
+                'OR'=>'Oruro',
+                'BN'=>'Beni',
+                'PA'=>'Pando',
+                'LP'=>'La Paz',
+                'PT'=>'Potosi',
+                'TJ'=>'Tarija',
+                'CH'=>'Chuquisaca',
+                'E'=>'Extranjero'
             ],null,
             [
                 'required',
@@ -156,7 +158,9 @@
             ($docente->fechanac) ? $docente->fechanac->format('d/m/Y') : date('d/m/Y'),
             [
                 'required',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'pattern' => '^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$',
+                'title' => 'Ingrese la fecha con el formato dd/mm/yyyy'
             ]
         ) !!}
         @if($errors->has('fechanac'))

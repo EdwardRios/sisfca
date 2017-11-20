@@ -13,6 +13,7 @@
                         ]
                  )!!}
                 @include('materia.partials.form')
+                @include('layouts.modal')
                 <button class="btn btn-primary center-block" type="submit">Registrar datos</button>
                 {!! Form::close() !!}
             </div>
@@ -63,9 +64,12 @@
                     }
                 });
             });
-            $(':input').keyup(function() {
+            $(':input[type=text]').keyup(function() {
                 this.value = this.value.toLocaleUpperCase();
             });
+            @if(Session::get('msj'))
+            $('#myModal').modal('show');
+            @endif
         });
     </script>
 @endsection

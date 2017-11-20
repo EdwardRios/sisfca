@@ -38,9 +38,15 @@ Route::resource('oferta','OfertaController');
 Route::resource('inscripcion','InscripcionController');
 Route::resource('cuenta','CuentaController');
 Route::get('/accountTable','CuentaController@studentAccountTable');
+Route::get('/estadoCuenta','CuentaController@estadoCuenta')->name('estadoCuenta');
+Route::get('/asignarDescuento','CuentaController@asignarDescuento')->name('asignarDescuento');
+Route::post('/confirmarDescuento','CuentaController@confirmarDescuento')->name('confirmarDescuento');
+Route::get('/listaEstudiantePrograma','CuentaController@listaEstudiantePrograma');
+
 Route::resource('pago','PagoController');
 Route::get('/nota/lista','InscripcionController@listaNota')->name('nota.lista');
-Route::get('/pago/crear/{id}','PagoController@createPago')->name('pago.crear');
+////Route::get('/pago/crear/{id}','PagoController@createPago')->name('pago.crear');
+Route::get('/pagoscrear','PagoController@createPago')->name('pagos.crear');
 Route::get('/estudiante/student-data', 'EstudianteController@studentTable');
 Route::get('/reporte/certificado','ReporteController@crearCertificado')->name('reporte.certificado');
 Route::post('/reporte/certificadoPDF','ReporteController@detallePDF')->name('certificadoPDF');

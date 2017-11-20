@@ -35,15 +35,16 @@
         {!! Form::label('ciciudad', 'Ciudad Carnet') !!}
         {!! Form::select('ciciudad',
             [
-                'Santa Cruz' => 'Santa Cruz',
-                'Cochabamba'=>'Cochabamba',
-                'Oruro'=>'Oruro',
-                'Beni'=>'Beni',
-                'Pando'=>'Pando',
-                'La Paz'=>'La Paz',
-                'Potosi'=>'Potosi',
-                'Tarija'=>'Tarija',
-                'Chuquisaca'=>'Chuquisaca',
+                'SC' => 'Santa Cruz',
+                'CB'=>'Cochabamba',
+                'OR'=>'Oruro',
+                'BN'=>'Beni',
+                'PA'=>'Pando',
+                'LP'=>'La Paz',
+                'PT'=>'Potosi',
+                'TJ'=>'Tarija',
+                'CH'=>'Chuquisaca',
+                'E'=>'Extranjero'
             ],null,
             [
                 'class' => 'form-control',
@@ -124,7 +125,9 @@
             [
                 'required',
                 'class' => 'form-control',
-                'placeholder' => 'Elija fecha de nacimiento... '
+                'placeholder' => 'Elija fecha de nacimiento... ',
+                'pattern' => '^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$',
+                'title' => 'Ingrese la fecha con el formato dd/mm/yyyy'
             ]
         ) !!}
         @if($errors->has('fechanac'))
@@ -186,7 +189,9 @@
             ($estudiante->fechaegresado) ? $estudiante->fechaegresado->format('d/m/Y'): date('d/m/Y'),
             [
                 'required',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'pattern' => '^([0-2][0-9]|3[0-1])(\/)(0[1-9]|1[0-2])\2(\d{4})$',
+                'title' => 'Ingrese la fecha con el formato dd/mm/yyyy'
             ]
         ) !!}
         @if($errors->has('fechaegresado'))

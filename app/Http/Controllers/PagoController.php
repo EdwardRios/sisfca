@@ -7,6 +7,7 @@ use App\Estudiante;
 use App\Pago;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Monolog\Handler\ElasticSearchHandler;
 
 class PagoController extends Controller
@@ -31,11 +32,14 @@ class PagoController extends Controller
 
     }
 
-    public function createPago($id)
+    public function createPago()//Antes tenia parametro ID
     {
-        $estudiante = Estudiante::find($id);
-        $cuentas = Cuenta::orderBy('id')->where('estudiante_id',$id)->get();
-        return view('pago.crear',compact('estudiante','cuentas'));
+//        $estudiante = Estudiante::find($id);
+//        $cuentas = Cuenta::orderBy('id')->where('estudiante_id',$id)->get();
+//        return view('pago.crear',compact('estudiante','cuentas'));
+        $estudiantes = Estudiante::fullName()->orderBy('id')->pluck('full_name','id');
+//        return view('pago.crear',compact('estudiantes'));
+        return view('pago.crear',compact('estudiantes'));
     }
     /**
      * Store a newly created resource in storage.
@@ -47,11 +51,11 @@ class PagoController extends Controller
     {
         //Obtener id de la cuenta para que sume a su saldo
         $pago = new Pago();
-        $cuenta = Cuenta::where('id',$request->get('cuenta_id'))->first();
-        $sum = 0;
+        $cuenta = Cuenta::where('id',$request->get('programa_id'))->first(); //Id cuenta segun programa y gestion
+//        $sum = 0;
         $pago->nro_deposito = $request->get('nro_deposito');
         $pago->fecha_deposito = $request->get('fecha_deposito');
-        $pago->cuenta_id = $request->get('cuenta_id');
+        $pago->cuenta_id = $request->get('programa_id');
         $pago->monto = $request->get('monto');
         if (($request->get('glosa'))=='nota'){
             $pago->glosa = 'Certificado de notas';

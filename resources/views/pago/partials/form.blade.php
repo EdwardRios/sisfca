@@ -1,21 +1,46 @@
-<div class="container">
-    <p><strong>Nombre:</strong> {{ $estudiante->nombre }} {{ $estudiante->apellido }} </p>
-    <p><strong>Registro:</strong> {{ $estudiante->registro }} </p>
+{{--<div class="container">--}}
+    {{--<p><strong>Nombre:</strong> {{ $estudiante->nombre }} {{ $estudiante->apellido }} </p>--}}
+    {{--<p><strong>Registro:</strong> {{ $estudiante->registro }} </p>--}}
 
+{{--</div>--}}
+{{--@if(session()->has('msj'))--}}
+    {{--<div class="alert alert-danger" role="alert">{{ session('msj')}}</div>--}}
+{{--@endif--}}
+{{--<div class="form-group">--}}
+    {{--<label for="cuenta_id">Elija el programa</label>--}}
+    {{--<select name="cuenta_id" id="cuenta_id" class="form-control" required>--}}
+        {{--<option value="" selected disabled>Elija un programa</option>--}}
+        {{--@foreach($cuentas as $c)--}}
+            {{--<option value="{{ $c->id}}">{{$c->programas->nombre}}</option>--}}
+        {{--@endforeach--}}
+    {{--</select>--}}
+{{--</div>--}}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::label('estudiante_id','Estudiante') !!}
+            {!! Form::select('estudiante_id',
+                $estudiantes,
+                null,
+                [
+                 'required',
+                'class' => 'form-control',
+                'placeholder' => 'Seleccione el estudiante...'
+                ]
+                 ) !!}
+        </div>
+    </div>
 </div>
-@if(session()->has('msj'))
-    <div class="alert alert-danger" role="alert">{{ session('msj')}}</div>
-@endif
-<div class="form-group">
-    <label for="cuenta_id">Elija el programa</label>
-    <select name="cuenta_id" id="cuenta_id" class="form-control" required>
-        <option value="" selected disabled>Elija un programa</option>
-        @foreach($cuentas as $c)
-            <option value="{{ $c->id}}">{{$c->programas->nombre}}</option>
-        @endforeach
-    </select>
+<div class="form-group">{!! Form::label('programa_id','Programa') !!}
+    {!! Form::select('programa_id',
+        [null=>'Seleccione programa'],
+        null,
+        [
+         'required',
+        'class' => 'form-control',
 
-</div>
+        ]
+         ) !!}</div>
 
 <div class="row">
     <div class="form-group col-md-4">

@@ -10,6 +10,7 @@
             [
                  'required',
                 'class' => 'form-control',
+                'placeholder' => 'Seleccione el estudiante...'
             ]
         ) !!}
         @if($errors->has('estudiante_id'))
@@ -26,7 +27,7 @@
             [
                  'required',
                 'class' => 'form-control programa',
-                //'placeholder' => 'Elija el programa que desear registrar'
+                'placeholder' => 'Elija el programa....'
             ]
         ) !!}
         @if($errors->has('programa_id'))
@@ -39,11 +40,11 @@
 <div class="form-group {{ $errors->has('gestion_id') ? 'has-error' : '' }}">
     {!! Form::label('gestion_id','Grupo Gestion') !!}
     {!! Form::select('gestion_id',
-        [null=>'Seleccione'],null,
+        [null=>'Seleccione la gestion'],null,
         [
             'required',
             'class' => 'form-control gestion_id',
-            'placeholder' => 'Seleccione la gestion'
+            //'placeholder' => 'Seleccione la gestion'
         ]
     )!!}
     @if($errors->has('gestion_id'))

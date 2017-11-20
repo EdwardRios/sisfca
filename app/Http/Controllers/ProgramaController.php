@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProgramaRequest;
+use App\Http\Requests\UpdateProgramaRequest;
 use App\Materia;
 use App\Programa;
 use Illuminate\Http\Request;
@@ -49,7 +51,7 @@ class ProgramaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProgramaRequest $request)
     {
         $programa = new Programa($request->all());
         $programa->save();
@@ -77,7 +79,9 @@ class ProgramaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programa = Programa::find($id);
+
+        return view('programa.edit',compact('programa'));
     }
 
     /**
@@ -87,9 +91,12 @@ class ProgramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProgramaRequest $request, $id)
     {
-        //
+        $programa = Programa::where('id',$id)->first();
+        $programa->fill($request->all());
+        $programa->save();
+        return view('programa.index');
     }
 
     /**

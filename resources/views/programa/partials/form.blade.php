@@ -37,7 +37,7 @@
         @endif
     </div>
 </div>
-<div class="form-group">
+<div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
     {!! Form::label('nombre','Nombre') !!}
     {!! Form::text ( 'nombre',null,
         [

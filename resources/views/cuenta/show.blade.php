@@ -5,8 +5,8 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-success">
                 <div class="panel-heading">Estados de Cuenta de {{$estudiante->nombre}}
-                    &nbsp;{{$estudiante->apellido}} </div>
-                <div class="panel-body">
+                        &nbsp;{{$estudiante->apellido}} </div>
+                    <div class="panel-body">
                     @include('cuenta.partials.form')
                 </div>
             </div>

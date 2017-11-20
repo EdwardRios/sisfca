@@ -16,4 +16,9 @@ class Programa extends Model
     {
         return $this->hasMany(Cuenta::class,'programa_id');
     }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre']= strtoupper($value);
+    }
 }

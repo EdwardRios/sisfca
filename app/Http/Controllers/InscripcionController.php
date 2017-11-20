@@ -99,6 +99,11 @@ class InscripcionController extends Controller
             $estudiante= $request->get('estudiante_id');
             $materiasOfertadas= $request->get('oferta_id'); //Obtiene el array de las ofertas_id
             $arrayCheck = $request->get('approved'); //Obtiene el array de las materias tickeadas
+            $cantPrograma = DB::table('cuentas')
+                            ->join('programas','programas.id','=','cuentas.programa_id')
+                            ->where([['cuentas.estudiante_id','=',$request->get('estudiante_id')],
+                                     ['programas.id','=',$request->get('programa_id')]])
+                            ->count();
 
             $tipoPrograma = DB::table('programas')
                             ->where('id',$request->get('programa_id'))
