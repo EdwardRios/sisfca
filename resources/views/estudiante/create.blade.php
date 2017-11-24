@@ -36,7 +36,7 @@
                 startView: 2,
                 language: "es"
             });
-            $('#myModalStudent').on('show.bs.modal', function (event) {
+            $('#myModalNotas').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget) // Button that triggered the modal
                 var recipient = button.data('whatever') // Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -44,6 +44,7 @@
                 var modal = $(this);
                 console.log(modal);
                //modal.find('.modal-title').text('New message to ' + recipient)
+
                 console.log(document.getElementById('nombre').value);
                 modal.find('#text_nombre').text(document.getElementById('nombre').value.toLocaleUpperCase());
                 modal.find('#text_apellido').text(document.getElementById('apellido').value.toLocaleUpperCase());

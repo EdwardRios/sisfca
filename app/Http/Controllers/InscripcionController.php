@@ -103,7 +103,7 @@ class InscripcionController extends Controller
                             ->join('programas','programas.id','=','cuentas.programa_id')
                             ->where([['cuentas.estudiante_id','=',$request->get('estudiante_id')],
                                      ['programas.id','=',$request->get('programa_id')]])
-                            ->count();
+                            ->count(); //Para obtener datos si tiene modulos inscritos
 
             $tipoPrograma = DB::table('programas')
                             ->where('id',$request->get('programa_id'))

@@ -10,6 +10,7 @@
             [
                  'required',
                 'class' => 'form-control',
+                'placeholder' => 'Seleccione un programa....'
             ]
         ) !!}
         @if($errors->has('programa_id'))
@@ -28,6 +29,7 @@
             [
                  'required',
                 'class' => 'form-control',
+                'placeholder' => 'Seleccione un materia....'
             ]
         ) !!}
         @if($errors->has('materia_id'))
@@ -55,7 +57,7 @@
 </div>
 <p class="text-center">Lista de Estudiantes</p>
 <p id="nombreDocente"></p>
-<table class="table table-bordered">
+<table class="table table-bordered" id="tableNotes">
     <thead>
         <tr>
             <th class="col-md-2">Registro</th>
