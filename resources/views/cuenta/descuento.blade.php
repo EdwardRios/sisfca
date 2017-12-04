@@ -3,13 +3,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-success">
-                <div class="panel-heading"> Nuevo Programa</div>
+                <div class="panel-heading">Asignar Descuento</div>
                 <div class="panel-body">
                     {!! Form::model(
                     null,
                     [
-                    'route' =>'confirmarDescuento',
-                    'method' => 'POST'
+                        'route' =>'confirmarDescuento',
+                        'method' => 'POST',
+                        'enctype' => 'multipart/form-data'
                     ]
                     )!!}
                     <div class="row">
@@ -26,7 +27,6 @@
                                     ]
                                      ) !!}
                             </div>
-
                         </div>
                     </div>
                     <div class="form-group">{!! Form::label('programa_id','Programa') !!}
@@ -41,20 +41,23 @@
                              ) !!}</div>
                     <div class="form-group">
                         <div class="col-md-12"><p><strong>Descuento</strong></p></div>
-                        <div class="form-group col-md-3">
-                            {{ Form::radio('descuento',15,null,['id'=>'quince']) }} {{ Form::label('quince','15%') }}&nbsp;
-                        </div>
-                        <div class="form-group col-md-3">
-                            {{ Form::radio('descuento',50,null,['id'=>'cincuenta']) }} {{ Form::label('cincuenta','50%') }}
-                            &nbsp;
-                        </div>
-                        <div class="form-group col-md-3">
-                            {{ Form::radio('descuento',100,null,['id'=>'cien']) }} {{ Form::label('cien','100%') }}
-                        </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-12">
+                            {{ Form::radio('descuento','quince1',null,['id'=>'quince1']) }} {{ Form::label('quince1','15% - Descuento por inscripcion Corporativa') }}
+                            <br>
+                            {{ Form::radio('descuento','quince2',null,['id'=>'quince2']) }} {{ Form::label('quince2','15% - Trabajo en institucion publica') }}
+                            <br>
+                            {{ Form::radio('descuento',30,null,['id'=>'treinta']) }} {{ Form::label('treinta','30% - Graduado por buen desempe&ntilde;o (Resolucion Vicerrectorado)') }}
+                            <br>
+                            {{ Form::radio('descuento',50,null,['id'=>'cincuenta']) }} {{ Form::label('cincuenta','50% - Educacion Continua (Resolucion Vicerrectorado)') }}
+                            <br>
+                            {{ Form::radio('descuento',15,null,['id'=>'cien']) }} {{ Form::label('cien','100% - Graduado por Excelencia (Resolucion Vicerrectorado)') }}
+                            <br>
                             {{ Form::radio('descuento','otro',null,['id'=>'otro']) }} {{ Form::label('otro','Otro') }}
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
+                            {!! Form::label('descuentotxt','Ingrese el porcentaje',
+                                            ['id' => 'descuentolabel',
+                                            'style' => 'display:none',]) !!}
                             {{ Form::number('descuentotxt',null,
                                 [   'id'=>'descuentotxt',
                                     'class' => 'form-control',
@@ -64,6 +67,27 @@
                                      'max' => '100',
                                 ])
                             }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {!! Form::label('descuentoDescripcion','Ingrese la descripcion del descuento',
+                                    ['id' => 'descuentoDesclabel',
+                                    'style' => 'display:none']) !!}
+                            {{ Form::text('descuentoDescripcion',null,
+                                [   'id'=>'descuentoDescripcion',
+                                    'class' => 'form-control',
+                                     'style' => 'display:none',
+                                     'placeholder' => 'Escriba la descripcion descuento....',
+                                ])
+                            }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ Form::label('comprobante','Documento de respaldo')}}
+                            {{ Form::file('comprobante',
+                                [ 'aria-describedby' => 'descripcion',
+                                    'class' => 'form-control'
+                                ]
+                            )}}
+                            <small id="descripcion" class="form-text text-muted">Solo archivos en formato PDF o IMG.</small>
                         </div>
                     </div>
                     @include('cuenta.partials.modaldescuento')
@@ -87,11 +111,23 @@
                 if ($("#otro").is(":checked")){
                     document.getElementById("descuentotxt").style.display = "block";
                     document.getElementById("descuentotxt").required = true;
+                    document.getElementById("descuentoDescripcion").style.display = "block";
+                    document.getElementById("descuentoDescripcion").required = true;
+                    document.getElementById("descuentolabel").style.display = "block";
+                    document.getElementById("descuentolabel").required = true;
+                    document.getElementById("descuentoDesclabel").style.display = "block";
+                    document.getElementById("descuentoDesclabel").required = true;
 //                    document.getElementById("monto").disabled = false;
 //                    document.getElementById("monto").value="";
                 }else {
                     document.getElementById("descuentotxt").style.display= "none";
                     document.getElementById("descuentotxt").required = false;
+                    document.getElementById("descuentoDescripcion").style.display = "none";
+                    document.getElementById("descuentoDescripcion").required = false;
+                    document.getElementById("descuentolabel").style.display = "none";
+                    document.getElementById("descuentolabel").required = false;
+                    document.getElementById("descuentoDesclabel").style.display = "none";
+                    document.getElementById("descuentoDesclabel").required = false;
 //                    document.getElementById("monto").value = 50;
 //                    document.getElementById("monto").disabled = true;
                 }

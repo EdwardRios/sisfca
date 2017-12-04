@@ -55,10 +55,10 @@
     <P>Una vez concluido el/la {{ $programa->tipo }} de "{{ $programa->nombre }}" obtuvo el promedio ponderado de
         {{ $promedios[2] }} {{$promedios[5]}} puntos,(en la escala de 1 a 100) como promedio final.
     </P>
-    <p>
-        Los miembros de la Comision en señal de conformidad firmaron lo anteriormente mencionado. Un Acta Original y
-        cuatro copias para un solo efecto.
-    </p>
+    {{--<p>--}}
+        {{--Los miembros de la Comision en señal de conformidad firmaron lo anteriormente mencionado. Un Acta Original y--}}
+        {{--cuatro copias para un solo efecto.--}}
+    {{--</p>--}}
     <p>
         Es dado al dia {{ $fechaactual[0] }} del mes de {{$fechaactual[1]}} del a&ntilde;o {{ $fechaactual[2]}} en la Ciudad de Santa Cruz de la Sierra
     </p>

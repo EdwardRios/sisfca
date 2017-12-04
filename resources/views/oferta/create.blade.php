@@ -34,6 +34,9 @@
             $('#materia_id').select2({
                 theme: 'bootstrap'
             });
+            $('#gestion_id').select2({
+               theme : 'bootstrap'
+            });
             $('#fecha_inicio').datepicker({
                 startView: 1,
                 format : "dd/mm/yyyy",

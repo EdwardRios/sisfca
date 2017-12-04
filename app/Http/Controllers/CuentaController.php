@@ -143,10 +143,41 @@ class CuentaController extends Controller
     public function confirmarDescuento(Request $request)
     {
         $cuenta = Cuenta::where('id',$request->get('programa_id'))->first();
-        if($request->get('descuento')=='otro')
-            $cuenta->descuento= $request->get('descuentotxt');
-        else
-            $cuenta->descuento = $request->get('descuento');
+        if($request->get('descuento')=='otro') {
+            $desc = $request->get('descuentotxt');
+            $cuenta->descuento = $desc; //Asignar descuento
+            $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/$desc;
+            $cuenta->descripcion_descuento = $request->get('descuentoDescripcion');
+        }else{
+            if($request->get('descuento') == 'quince1'){
+                $cuenta->descuento = 15;
+                $cuenta->descripcion_descuento = "Descuento por inscripcion corporativa";
+                $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/15;
+            }elseif ($request->get('descuento') == 'quince2') {
+                $cuenta->descuento = 15;
+                $cuenta->descripcion_descuento = "Trabajo en institucion publica";
+                $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/15;
+            }elseif ($request->get('descuento') == 30){
+                $cuenta->descuento = 30;
+                $cuenta->descripcion_descuento = "Graduado por buen desempeño (Resolucion Vicerrectorado)";
+                $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/30;
+
+            }elseif ($request->get('descuento') == 50){
+                $cuenta->descuento = 50;
+                $cuenta->descripcion_descuento = "Educacion Continua";
+                $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/50;
+
+            }elseif ($request->get('descuento') == 100){
+                $cuenta->descuento = 100;
+                $cuenta->descripcion_descuento = "Educacion Continua";
+                $cuenta->saldo = $cuenta->monto_programa - ($cuenta->monto_programa*100)/100;
+            }
+//                $descf= $request->get('descuento');
+//            $cuenta->descuento = $descf; //A signar descuento
+            //Colocar archivos
+            
+        }
+        dd($request->file('comprobante'));
         $cuenta->save();
         return Redirect::back();
     }

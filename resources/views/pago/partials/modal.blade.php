@@ -9,12 +9,12 @@
             </div>
             <div class="modal-body">
                 {{--<p>Registro: <span id="text_registro"></span></p>--}}
-                <p>Nombre: <span id="text_nombre"></span>&nbsp;<span id="text_apellido"></span></p>
-                <p>Programa: <span id="text_programa"></span></p>
-                <p>Numero deposito: <span id="text_nrodeposito"></span></p>
-                <p>Fecha deposito: <span id="text_fechadeposito"></span></p>
-                <p>Monto: <span id="text_monto"></span></p>
-                <p>Glosa: <span id="text_glosa"></span></p>
+                <p><strong>Nombre:</strong> <span id="text_nombre"></span>&nbsp;<span id="text_apellido"></span></p>
+                <p><strong>Programa:</strong> <span id="text_programa"></span></p>
+                <p><strong>Numero deposito:</strong> <span id="text_nrodeposito"></span></p>
+                <p><strong>Fecha deposito:</strong> <span id="text_fechadeposito"></span></p>
+                <p><strong>Monto:</strong> <span id="text_monto"></span></p>
+                <p><strong>Glosa: </strong><span id="text_glosa"></span></p>
 
             </div>
             <div class="modal-footer">

@@ -95,6 +95,9 @@
                theme: "bootstrap",
 //               placeholder: "Elija el programa",
             });
+            $('#gestion_id').select2({
+               theme:"bootstrap"
+            });
         });
     </script>
 @endsection

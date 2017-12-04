@@ -79,6 +79,10 @@
                 console.log(programaid);
                 console.log(div);
                 if (programaid!=''){
+                    $('#datos-pagos').fadeOut(800);
+                    document.getElementById("datos-pagos").style.display = "none"; //Oculta detalles de pagos del anterior postgraduante
+                    $('#tabla-pago').fadeOut(800);
+                    document.getElementById("tabla-pago").style.visibility = "hidden";
                     $.ajax({
                         type: 'get',
                         url: '{!! URL::to('/listaEstudiantePrograma')!!}',

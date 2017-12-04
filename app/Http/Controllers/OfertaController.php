@@ -45,13 +45,11 @@ class OfertaController extends Controller
     public function store(OfertaRequest $request)
     {
         $oferta= new Oferta($request->all());
-
         if($oferta->save()){
             return Redirect::back()->with('msj',1);
         }else{
             return back()->with('msj','Error');
         };
-
     }
 
     /**

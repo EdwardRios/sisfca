@@ -104,7 +104,6 @@ class InscripcionController extends Controller
                             ->where([['cuentas.estudiante_id','=',$request->get('estudiante_id')],
                                      ['programas.id','=',$request->get('programa_id')]])
                             ->count(); //Para obtener datos si tiene modulos inscritos
-
             $tipoPrograma = DB::table('programas')
                             ->where('id',$request->get('programa_id'))
                             ->value('tipo');
@@ -124,13 +123,23 @@ class InscripcionController extends Controller
                 $account->estudiante_id = $estudiante;
                 $account->programa_id = $request->get('programa_id');
                 $account->gestion_id = $request->get('gestion_id');
-                if ($tipoPrograma == 'Diplomado') $account->monto_programa = 8000;
-                elseif ($tipoPrograma == 'Maestria') $account->monto_programa = 21000;
-                elseif ($tipoPrograma == 'Especialidad') $account->monto_programa = 12000;
+                $account->descuento = 0 ;
+                if ($tipoPrograma == 'Diplomado') {
+                    $account->monto_programa = 8000;
+                    $account->saldo = 8000;
+                }
+                elseif ($tipoPrograma == 'Maestria') {
+                    $account->monto_programa = 21000;
+                    $account->saldo = 21000;
+                }
+                elseif ($tipoPrograma == 'Especialidad') {
+                    $account->monto_programa = 12000;
+                    $account->saldo = 12000;
+                }
                 $account->save();
             }
             DB::commit();
-            return back()->with('msj','Registro Exitoso');
+            return back()->with('msj','Inscripcion registrado exitosamente');
         }catch (\exception $e){
             DB::rollback();
             return back()->with('msj','Error al registrar datos : Datos ingresados ya existen');

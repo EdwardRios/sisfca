@@ -63,7 +63,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="{{asset('img/smallLogoGota.png')}}" width="50%" height="50%" alt=""></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="{{asset('img/smallLogoUP.png')}}" width="80%" height="80%" alt="logoGota"></span>
+      <span class="logo-lg"><img src="{{asset('img/logofac02.png')}}" width="80%" height="80%" alt="logoGota"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -158,7 +158,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel" style="padding-bottom: 50px">
+      <div class="user-panel center-block" style="padding-bottom: 50px">
         <div class="pull-left info">
           <p> {{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i>
@@ -194,7 +194,7 @@
               <li><a href="{{ route('docente.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Docente</a></li>
               <li><a href="{{ route('estudiante.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Estudiante</a></li>
               <li><a href="{{ route('programa.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Programa</a></li>
-              <li><a href="{{ route('materia.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Materias</a></li>
+              <li><a href="{{ route('materia.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Modulo</a></li>
               <li><a href="{{ route('gestion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Gestion</a></li>
           </ul>
 
@@ -208,9 +208,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('docente.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Docente</a></li>
-            <li><a href="{{ route('estudiante.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar Estudiante</a></li>
-            <li><a href="{{ route('programa.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Mostrar programa</a></li>
+            <li><a href="{{ route('docente.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista datos Docente</a></li>
+            <li><a href="{{ route('estudiante.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista datos Estudiante</a></li>
+            <li><a href="{{ route('programa.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista datos programa</a></li>
             <li><a href="{{ route('gestion.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Gestion</a></li>
           </ul>
         </li>
@@ -223,8 +223,8 @@
             </span>
               </a>
               <ul class="treeview-menu">
+                <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Ofertar Modulo</a></li>
                 <li><a href="{{ route('inscripcion.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Inscripcion Estudiante</a></li>
-                <li><a href="{{ route('oferta.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Oferta Materia</a></li>
                 <li><a href="{{ url('notas/create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar Notas</a></li>
                 <li><a href="{{ route('nota.lista') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Lista Notas</a></li>
               </ul>

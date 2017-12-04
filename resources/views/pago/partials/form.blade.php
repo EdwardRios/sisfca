@@ -38,7 +38,6 @@
         [
          'required',
         'class' => 'form-control',
-
         ]
          ) !!}</div>
 
@@ -58,8 +57,11 @@
     <div class="form-group">
         <div class="col-md-12"><p><strong>Glosa</strong></p></div>
         <div class="form-group col-md-4">
-
-            {{ Form::radio('glosa','nota',null,['id'=>'nota']) }} {{ Form::label('nota','Certificado de notas') }}
+            {{ Form::radio('glosa','nota',null,
+                ['id'=>'nota',
+                  'required'
+            ]) }}
+            {{ Form::label('nota','Certificado de notas') }}
             &nbsp;
         </div>
         <div class="form-group col-md-4">

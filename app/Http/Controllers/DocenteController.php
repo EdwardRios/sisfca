@@ -40,8 +40,8 @@ class DocenteController extends Controller
                 else return 'Masculino';
             })
             ->addColumn('action',function ($docente){
-                return '<a href="./docente/'.$docente->id.'/edit"class="btn btn-xs btn-success">
-                        <i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;<a href="./docente/'.$docente->id.'" class="btn btn-xs btn-primary">
+                return '<a href="./docente/'.$docente->id.'/edit"class="btn btn-success">
+                        <i class="glyphicon glyphicon-edit"></i> Editar</a>&nbsp;&nbsp;<a href="./docente/'.$docente->id.'" class="btn btn-primary">
                         <i class="glyphicon glyphicon-edit"></i> Ver mas</a>';
             })
 //            ->addColumn('action2',function ($d){
