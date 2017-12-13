@@ -21,15 +21,15 @@
                     </div>
                 </div>
                 <div class="form-group">{!! Form::label('programa_id','Programa') !!}
-                {!! Form::select('programa_id',
-                    [null=>'Seleccione programa'],
-                    null,
-                    [
-                     'required',
-                    'class' => 'form-control',
+                    {!! Form::select('programa_id',
+                        [null=>'Seleccione programa'],
+                        null,
+                        [
+                         'required',
+                        'class' => 'form-control',
 
-                    ]
-                     ) !!}</div>
+                        ]
+                         ) !!}</div>
                 {{--{!! Form::model(--}}
 
                 {{--) !!}--}}
@@ -37,19 +37,24 @@
                 {{--@include('estudiante.partials.form')--}}
 
                 {{--{!! Form::close() !!}--}}
-                <div class="row" style="display: none" id="datos-pagos">
-                    <div class="col-md-6">
-                        <p><strong>Monto a Pagar:  </strong><span id="monto-pagar"></span></p>
-                        <p><strong>Monto Pagado:  </strong><span id="monto-pagado"></span></p>
+                    <div class="row" style="display: none" id="datos-pagos">
+                        <div class="col-md-6">
+                            <p><strong>Monto a Pagar: </strong><span id="monto-pagar"></span></p>
+                            <p><strong>Monto Pagado: </strong><span id="monto-pagado"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Saldo: </strong><span id="saldo"></span></p>
+                            <p><strong>Materias Reprobadas: </strong> <span id="materias"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Descuento: </strong> <span id="descuento"></span> %</p>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <a id="verDoc" href="#" target="_blank" class="btn btn-primary" role="button">Ver Documentacion Descuento</a>
+                            <a id="descargarDoc" href="#" class="btn btn-success" role="button">Descargar Documentacion</a>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <p><strong>Saldo: </strong><span id="saldo"></span></p>
-                        <p><strong>Materias Reprobadas: </strong> <span id="materias"></span></p>
-                    </div>
-                    <div class="col-md-12">
-                        <p><strong>Descuento: </strong> <span id="descuento"></span> %</p>
-                    </div>
-                </div>
+                {{--TAbla de pagos --}}
                 <table class="table table-bordered" id="tabla-pago" style="display: none">
                     <thead>
                     <tr>
@@ -72,13 +77,13 @@
             $('#estudiante_id').select2({
                 theme: 'bootstrap'
             });
-            $(document).on('change','#estudiante_id',function(){
-                var programaid=$(this).val();
-                var div=$(this).parent().parent().parent(); //Obtengo el div o form contenedor
-                var op=" ";
+            $(document).on('change', '#estudiante_id', function () {
+                var programaid = $(this).val();
+                var div = $(this).parent().parent().parent(); //Obtengo el div o form contenedor
+                var op = " ";
                 console.log(programaid);
                 console.log(div);
-                if (programaid!=''){
+                if (programaid != '') {
                     $('#datos-pagos').fadeOut(800);
                     document.getElementById("datos-pagos").style.display = "none"; //Oculta detalles de pagos del anterior postgraduante
                     $('#tabla-pago').fadeOut(800);
@@ -87,17 +92,17 @@
                         type: 'get',
                         url: '{!! URL::to('/listaEstudiantePrograma')!!}',
                         data: {estudiante_id: programaid},
-                        success: function(data){
+                        success: function (data) {
                             console.log('felicidades');
                             console.log(data);
-                            
-                            op+='<option value="0" selected disabled>Elija un programa</option>';
-                            for(var i=0;i<data.length;i++){
-                                op+='<option value=" '+data[i].id+' "> '+data[i].nombre + ' - Grupo: ' +
-                                     data[i].grupo +
-                                    '&nbsp;&nbsp;Edicion:'+ data[i].edicion +
-                                    '&nbsp;&nbsp;Version: '+ data[i].version +
-                                    '&nbsp;&nbsp;A&ntilde;o: '+data[i].anho  +
+
+                            op += '<option value="0" selected disabled>Elija un programa</option>';
+                            for (var i = 0; i < data.length; i++) {
+                                op += '<option value=" ' + data[i].id + ' "> ' + data[i].nombre + ' - Grupo: ' +
+                                    data[i].grupo +
+                                    '&nbsp;&nbsp;Edicion:' + data[i].edicion +
+                                    '&nbsp;&nbsp;Version: ' + data[i].version +
+                                    '&nbsp;&nbsp;A&ntilde;o: ' + data[i].anho +
                                     '</option>';
                                 console.log(data[i].id);
                             }
@@ -107,7 +112,7 @@
                             $('.panel-body').find('#programa_id').append(op);
 
                         },
-                        error: function(){
+                        error: function () {
                             console.log('Error')
                         }
                     });
@@ -168,6 +173,8 @@
                         var3.innerText = data[0].materias_reprobadas;
                         var4 = document.getElementById('descuento');
                         var4.innerText = data[0].descuento;
+                        //Colocando el enlace para la descarga
+                        document.querySelector('#verDoc').setAttribute('href','{{ asset("descuento") }}/'+data[0].doc_respaldo );
                     },
                     error: function () {
                         console.log('Error')

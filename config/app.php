@@ -183,6 +183,8 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Laraveles\Spanish\SpanishServiceProvider::class,
     ],
 
     /*
@@ -237,5 +239,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
     ],
 ];
+

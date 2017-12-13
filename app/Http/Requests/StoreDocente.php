@@ -31,7 +31,8 @@ class StoreDocente extends FormRequest
             'apellido' => 'required',
             'sexo' => 'required|not_in:0',
             'grado'=> 'required',
-            'fechanac' => 'required'
+            'fechanac' => 'required',
+            'ciciudad' => 'required'
         ];
     }
 

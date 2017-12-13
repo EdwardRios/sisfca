@@ -181,7 +181,7 @@
                 var estudiante_text = document.getElementById('estudiante_id');
                 var option_user_selection = estudiante_id.options[ estudiante_id.selectedIndex ].text
                 console.log(option_user_selection);
-
+                //Colocando valores al modal
                 modal.find('#text_nombre').text(estudiante_id.options[ estudiante_id.selectedIndex ].text.toLocaleUpperCase());
                 modal.find('#text_programa').text(programa_id.options[ programa_id.selectedIndex ].text);
 //                modal.find('#text_descuento').text(document.getElementById('nro_deposito').value.toLocaleUpperCase());
@@ -192,6 +192,9 @@
                 }else{
                     modal.find('#text_descuento').text(radio_text);
                 }
+                var nombreArchivo = document.getElementById('comprobante').value;
+                var nombre = nombreArchivo.split(/(\\|\/)/g).pop();
+                modal.find('#text_archivo').text(nombre);
 //                   .toLocaleUpperCase());
 //                else    modal.find('#text_glosa').text($('input:radio:checked').next('label:first').text());
 //                modal.find('#text_glosa').text(document.getElementById('glosa').value.toLocaleUpperCase());

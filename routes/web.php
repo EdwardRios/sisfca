@@ -36,11 +36,13 @@ Route::resource('materia','MateriaController');
 Route::resource('gestion','GestionController');
 Route::resource('oferta','OfertaController');
 Route::resource('inscripcion','InscripcionController');
+//Cuenta y Descuentos
 Route::resource('cuenta','CuentaController');
 Route::get('/accountTable','CuentaController@studentAccountTable');
 Route::get('/estadoCuenta','CuentaController@estadoCuenta')->name('estadoCuenta');
 Route::get('/asignarDescuento','CuentaController@asignarDescuento')->name('asignarDescuento');
 Route::post('/confirmarDescuento','CuentaController@confirmarDescuento')->name('confirmarDescuento');
+Route::get('descuento/{archivo}', 'CuentaController@descargarArchivo')->where('archivo', '^[^/]+$');
 Route::get('/listaEstudiantePrograma','CuentaController@listaEstudiantePrograma');
 
 Route::resource('pago','PagoController');

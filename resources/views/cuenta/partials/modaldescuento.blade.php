@@ -12,6 +12,7 @@
                 <p>Nombre: <span id="text_nombre"></span>&nbsp;<span id="text_apellido"></span></p>
                 <p>Programa: <span id="text_programa"></span></p>
                 <p>Descuento: <span id="text_descuento"></span></p>
+                <p>Nombre Archivo: <span id="text_archivo"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>

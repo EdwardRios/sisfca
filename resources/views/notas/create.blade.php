@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#myModalNotas">
                         Registrar Datos
                     </button>
-                    <button class="btn btn-primary center-block form-control" type="submit">Registrar datos</button>
+                    {{--<button class="btn btn-primary center-block form-control" type="submit">Registrar datos</button>--}}
                     {!! Form::close() !!}
                 </div>
             </div>

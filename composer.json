@@ -15,7 +15,9 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "laraveles/spanish": "^1.0",
         "nesbot/carbon": "^1.22",
+        "proengsoft/laravel-jsvalidation": "^2.0",
         "santigarcor/laratrust": "4.0.*",
         "yajra/laravel-datatables-oracle": "8.0"
     },
@@ -50,7 +52,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
         ]
     },
     "config": {

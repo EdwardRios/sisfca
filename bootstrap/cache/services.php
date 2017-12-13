@@ -35,6 +35,8 @@
     31 => 'Jenssegers\\Date\\DateServiceProvider',
     32 => 'Laratrust\\LaratrustServiceProvider',
     33 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    34 => 'Proengsoft\\JsValidation\\JsValidationServiceProvider',
+    35 => 'Laraveles\\Spanish\\SpanishServiceProvider',
   ),
   'eager' => 
   array (
@@ -58,6 +60,8 @@
     17 => 'Jenssegers\\Date\\DateServiceProvider',
     18 => 'Laratrust\\LaratrustServiceProvider',
     19 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    20 => 'Proengsoft\\JsValidation\\JsValidationServiceProvider',
+    21 => 'Laraveles\\Spanish\\SpanishServiceProvider',
   ),
   'deferred' => 
   array (

@@ -8,7 +8,8 @@
                     {!! Form::model(
                         $estudiante = new \App\Estudiante(),
                         [
-                            'route' => 'estudiante.store'
+                            'route' => 'estudiante.store',
+                            'id' => 'form-student'
                         ]
                     ) !!}
                     @include('estudiante.partials.form')
@@ -62,4 +63,6 @@
             @endif
         });
     </script>
+    <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\StoreEstudiante', '#form-student'); !!}
 @endsection

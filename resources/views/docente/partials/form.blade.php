@@ -44,8 +44,8 @@
         </span>
     @endif
 </div>
-<div class="row form-group ">
-    <div class="col-md-3 {{ $errors->has('carnet') ? 'has-error' : '' }}">
+<div class="row">
+    <div class="col-md-3 form-group {{ $errors->has('carnet') ? 'has-error' : '' }}">
         {!! Form::label('carnet','Carnet') !!}
         {!! Form::text('carnet',null,
             [
@@ -63,7 +63,7 @@
                                 </span>
         @endif
     </div>
-    <div class="col-md-3 {{ $errors->has('ciciudad') ? 'has-error' : '' }}">
+    <div class="col-md-3 form-group {{ $errors->has('ciciudad') ? 'has-error' : '' }}">
         {!! Form::label('ciciudad','Carnet Ciudad') !!}
         {!! Form::select('ciciudad',
             [
@@ -90,7 +90,7 @@
             </span>
         @endif
     </div>
-    <div class="col-md-3 {{ $errors->has('sexo') ? 'has-error' : '' }}">
+    <div class="col-md-3 form-group {{ $errors->has('sexo') ? 'has-error' : '' }}">
         {!! Form::label('sexo','Sexo') !!}
         {!! Form::select('sexo',
             [
@@ -110,7 +110,7 @@
                                 </span>
         @endif
     </div>
-    <div class="col-md-3 {{ $errors->has('grado') ? 'has-error' : '' }}">
+    <div class="col-md-3 form-group {{ $errors->has('grado') ? 'has-error' : '' }}">
         {!! Form::label('grado','Grado') !!}
         {!! Form::select('grado',
             [
@@ -133,8 +133,8 @@
         @endif
     </div>
 </div>
-<div class="row form-group">
-    <div class="col-md-3">
+<div class="row">
+    <div class="col-md-3 form-group">
         {!! Form::label('telefono', 'Telefono') !!}
         {!! Form::number('telefono',null,
             [
