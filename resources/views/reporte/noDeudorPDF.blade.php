@@ -47,7 +47,7 @@
         <p><strong>DIRECTOR UNIDAD POSTGRADO</strong></p>
         <p><strong>FACULTAD DE CIENCIAS AGRICOLAS</strong></p>
     </div>
-    <br><br><br>
+    <br><br>
     <p class="center">Santa Cruz de la Sierra, {{$fecha}}</p>
 </body>
 </html>

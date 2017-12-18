@@ -6,7 +6,9 @@ use App\Estudiante;
 use App\Http\Requests\StoreDocente;
 use App\Http\Requests\UpdateDocente;
 use App\Programa;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -28,7 +30,6 @@ class DocenteController extends Controller
 	{
 		$docentes = Docente::nombre($request->get('nombre'))->orderBy('id','desc')->paginate(10);
 		return view('docente.index',compact('docentes'));
-
 	}
     public function data()
     {
@@ -82,6 +83,15 @@ class DocenteController extends Controller
 //		$docente->telefono = $request->get('telefono');
 //		$docente->email = $request->get('email');
 //		$docente->domicilio = $request->get('domicilio');
+//      dd($docente);
+        $archivo =  $request->file('curriculum'); //Obtengo el archivo\
+        $nombreArchivo = $archivo->getClientOriginalName();
+        $codigoDocente = $docente->codigo;
+        $rutaArchivo = Storage::disk('archivos')->putFileAs('docente', $archivo, $codigoDocente.'-'.$nombreArchivo);
+        $ruta = storage_path($rutaArchivo);
+        \Debugbar::info($rutaArchivo);
+        \Debugbar::info($ruta);
+        $docente->curriculum = $codigoDocente.'-'.$nombreArchivo;
 //        dd($docente);
 		if ($docente->save()){
             return Redirect::back()->with('msj',1);
@@ -100,7 +110,12 @@ class DocenteController extends Controller
 	public function show($id)
 	{
 		$docente = Docente::find($id);
-		return view('docente.show', compact('docente'));
+		$materiasDocente = DB::table('ofertas as o')
+                            ->join('gestiones as g','g.id','=','o.gestion_id')
+                            ->join('materias as m','m.id','=','o.materia_id')
+                            ->where('o.docente_id','=',$docente->id)
+                            ->select('m.nombre','g.version','g.grupo','g.edicion','g.anho','o.fecha_inicio','o.fecha_fin')->get();
+		return view('docente.show', compact('docente','materiasDocente'));
 	}
 	/**
 	 * Show the form for editing the specified resource.
@@ -139,4 +154,8 @@ class DocenteController extends Controller
 	{
 		//
 	}
+    public function descargarCurriculum($archivo)
+    {
+        return response()->download(storage_path('archivos/docente/'.$archivo), null, [], null);
+    }
 }

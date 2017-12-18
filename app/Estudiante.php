@@ -27,9 +27,13 @@ class Estudiante extends Model
                 ->orderBy('nombre');
         }
     }
-    public function scopeFullName($query)
+    public function scopeFullName($query) //Nombre y apellido
     {
         $query->select(DB::raw("CONCAT(nombre ,' ', apellido) as full_name"),'id');
+    }
+    public function scopeFullLastName($query) //Apellido y nombre
+    {
+        $query->select(DB::raw("CONCAT(apellido,' ', nombre) as full_last_name"),'id');
     }
     public function setFechanacAttribute($value)
     {

@@ -30,7 +30,7 @@
     @endif
 </div>
 <div class="form-group {{ $errors->has('apellido') ? 'has-error' : '' }}">
-    {!! Form::label('apellido','Apellido') !!}
+    {!! Form::label('apellido','Apellidos') !!}
     {!! Form::text('apellido',null,
         [
             'required',
@@ -51,8 +51,8 @@
             [
                 'required',
                 'class' => 'form-control',
-                'pattern' => '[0-9]{5,50}',
-                'title' => 'Ingrese solo numeros'
+                'maxlength' => '9'
+
             ]
         ) !!}
 
@@ -179,5 +179,4 @@
         ]
     ) !!}
 </div>
-
 

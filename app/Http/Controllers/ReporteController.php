@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 //require __DIR__ . '/vendor/autoload.php';
+use App\Cuenta;
 use PHPJasper\PHPJasper;
 use App\Estudiante;
 use App\Inscripcion;
@@ -121,7 +122,17 @@ class ReporteController extends Controller
             'gestion' => $gestion,
             'fecha' => $dateNow,
         ]);
-        return $pdf->stream();
+        $monto_pagado = Cuenta::where([['estudiante_id', $request->estudiante_id],
+                                    ['programa_id', $request->programa_id]])
+                                    ->sum('monto_pagado');
+        $monto_pagar = Cuenta::where([['estudiante_id', $request->estudiante_id],
+                                    ['programa_id', $request->programa_id]])
+                                    ->sum('saldo');
+
+        if($monto_pagado >= $monto_pagar)
+            return $pdf->stream();
+        else
+            return 'No se puede generar certificado tiene deudas pendientes , consulte con administracion';
     } //Generar PDF
     public function actaNotas(Request $request){
         $programa = Programa::pluck('nombre','id');

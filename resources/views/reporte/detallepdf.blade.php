@@ -10,14 +10,14 @@
 </head>
 <body>
 <br>
-    <h3 class="center">Certificado de notas</h3>
+    <h3 class="center">CERTIFICADO DE NOTAS</h3>
     <p class="interline">
         En aplicaci&oacute;n de las normas y reglamentos de conformidad vigentes en la Universidad Aut&oacute;noma "Gabriel
         Ren&eacute; Moreno" seg&uacute;n,
-        Resoluci&oacute;n I.C.U N° 003/2008, Resoluciones Vicerrectorales N° 010/2008 y 103/2008 el Univ. {{ $estudiante->nombre }} {{ $estudiante->apellido }}
-        con Registro {{ $estudiante->registro }} y con C.I. {{ $estudiante->carnet }} {{ $estudiante->ciciudad }} ,
-        egresado de la carrera de : {{ $estudiante->carreras->nombre }} , habiendo concluido el programa de {{ $programa->tipo }}
-        {{ $programa->nombre }} con los siguientes m&oacute;dulos:
+        Resoluci&oacute;n I.C.U N° 003/2008, Resoluciones Vicerrectorales N° 010/2008 y 103/2008, certifica que el Univ. {{ $estudiante->nombre }} {{ $estudiante->apellido }}
+        , Registro {{ $estudiante->registro }} y C.I. {{ $estudiante->carnet }} {{ $estudiante->ciciudad }} ,
+        egresado de la carrera de {{ $estudiante->carreras->nombre }} , concluyo el programa de {{ $programa->tipo }} en
+        {{ $programa->nombre }} con las siguientes notas:
     </p>
     <table class="center-table bordesjuntos">
         <thead>
@@ -41,7 +41,8 @@
             </tr>
         </tbody>
     </table>
-    <p>El diplomado tuvo una duracion de xHrs y se desarrollo del {{ $fechainicio }} al {{ $fechafin }}</p>
+    {{--<p>El diplomado tuvo una duracion de xHrs y se desarrollo del {{ $fechainicio }} al {{ $fechafin }}</p>--}}
+    <br>
     <table class="center-table bordesjuntos">
         <tr>
             <td colspan="2"><strong>B) PROMEDIO GRAL. DE GRADUACION PPG DE :  {{ $promedios[4] }} (35%)</strong></td>
@@ -53,14 +54,14 @@
         </tr>
     </table>
     <P>Una vez concluido el/la {{ $programa->tipo }} de "{{ $programa->nombre }}" obtuvo el promedio ponderado de
-        {{ $promedios[2] }} {{$promedios[5]}} puntos,(en la escala de 1 a 100) como promedio final.
+        {{ $promedios[2] }} ({{ strtolower($promedios[5])}}) puntos, en la escala de 1 a 100 como promedio final.
     </P>
     {{--<p>--}}
         {{--Los miembros de la Comision en señal de conformidad firmaron lo anteriormente mencionado. Un Acta Original y--}}
         {{--cuatro copias para un solo efecto.--}}
     {{--</p>--}}
     <p>
-        Es dado al dia {{ $fechaactual[0] }} del mes de {{$fechaactual[1]}} del a&ntilde;o {{ $fechaactual[2]}} en la Ciudad de Santa Cruz de la Sierra
+        Es dado a los {{ strtolower($fechaactual[0]) }} dias del mes de {{ strtolower($fechaactual[1])}} del a&ntilde;o {{ strtolower($fechaactual[2])}} en la ciudad de Santa Cruz de la Sierra
     </p>
     <br>
     <br>

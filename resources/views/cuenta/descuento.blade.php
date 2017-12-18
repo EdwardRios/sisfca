@@ -84,7 +84,9 @@
                             {{ Form::label('comprobante','Documento de respaldo')}}
                             {{ Form::file('comprobante',
                                 [ 'aria-describedby' => 'descripcion',
-                                    'class' => 'form-control'
+                                    'class' => 'form-control',
+                                    'accept' => 'application/pdf,image/*',
+                                    'required'
                                 ]
                             )}}
                             <small id="descripcion" class="form-text text-muted">Solo archivos en formato PDF o IMG.</small>

@@ -23,8 +23,11 @@ Route::get('dash',function (){
 });
 
 Route::resource('carrera', 'CarrerasController' );
+//Rutas Docente
 Route::resource('docente','DocenteController');
 Route::get('/docenteTable', 'DocenteController@data');
+Route::get('docentes/{archivo}', 'DocenteController@descargarCurriculum')->where('archivo', '^[^/]+$');
+//Rutas Estudiante
 Route::resource('estudiante','EstudianteController');
 Route::get('/studentTable', 'EstudianteController@data');
 Route::get('/compilar','ReporteController@compilarJasperTest');

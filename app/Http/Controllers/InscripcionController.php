@@ -31,7 +31,7 @@ class InscripcionController extends Controller
      */
     public function create()
     {
-        $estudiantes = Estudiante::fullName()->orderBy('id')->pluck('full_name','id');
+        $estudiantes = Estudiante::fullLastName()->orderBy('id')->pluck('full_last_name','id');
         $programas = Programa::orderBy('id')->pluck('nombre','id');
 //    $gestiones = Gestion::orderBy('id')->get();
         return view('inscripcion.create',compact('programas','estudiantes','gestiones'));
@@ -193,8 +193,8 @@ class InscripcionController extends Controller
             $arrayEstudiante= $request->get('estudianteid');
             $arrayOfertas= $request->get('ofertaid'); //Obtiene el array de las ofertas_id
             $arrayNotas = $request->get('notas'); //Obtiene el array de los estudiantes
-            $materia_id = $request->get('materia_id'); //Obtengo id del form
-            $gestion_id = $request->get('gestion_id');
+            $materia_id = $request->get('materia_id'); //Obtengo id del modulo del form
+            $gestion_id = $request->get('gestion_id');  //Obtenfo el id de la gestion
             $cont=0;
             foreach($arrayNotas as $nota){
                 $inscripcion = Inscripcion::where([['oferta_id','=',$arrayOfertas[$cont]],
@@ -209,19 +209,29 @@ class InscripcionController extends Controller
                                                         ['programa_id','=',$programaId],
                                                         ['gestion_id','=',$gestion_id]
                                                         ])->first();
-                    $saldo = Cuenta::where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])->value('saldo');
+                    \Debugbar::info($cuentaEstudiante);
+                    $saldo = Cuenta::where([['estudiante_id','=', $arrayEstudiante[$cont]],
+                                            ['programa_id','=',$programaId],
+                                            ['gestion_id','=',$gestion_id]])->value('saldo');
                     $matReprobada = DB::table('cuentas')
-                                        ->where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])
+                                        ->where([['estudiante_id','=', $arrayEstudiante[$cont]],
+                                                 ['programa_id','=',$programaId],
+                                                  ['gestion_id','=',$gestion_id]])
                                         ->value('materias_reprobadas');
+                    \Debugbar::info('Datos matreprobada:'.$matReprobada);
+//                    dd($matReprobada);
                     $tipoPrograma = DB::table('programas')
                                     ->join('materias','materias.programa_id','=','programas.id')
                                     ->where('materias.id',$materia_id)
                                     ->value('tipo');
-                    $descuento = DB::table('cuentas')->where([['estudiante_id','=', $arrayEstudiante[$cont]],['programa_id','=',$programaId]])
-                        ->value('descuento');
+                    $descuento = DB::table('cuentas')->where([['estudiante_id','=', $arrayEstudiante[$cont]],
+                                                              ['programa_id','=',$programaId],
+                                                                ['gestion_id','=',$gestion_id]])
+                                                                ->value('descuento');
                     $matReprobada = $matReprobada + 1;
                     if($matReprobada == 1 && $descuento > 0 ){
                         $nivelMateria = DB::table('materias')->where('id',$materia_id)->value('nivel');
+                        \Debugbar::info($nivelMateria);
                         if ($tipoPrograma == 'Diplomado'){
                             $saldoDescuento = ((8000-((8000*$descuento)/100))/ 6 )* ($nivelMateria-1);
                             $saldoRestante = (8000/ 6 )* (7- $nivelMateria);
@@ -237,9 +247,9 @@ class InscripcionController extends Controller
                         }
                         $cuentaEstudiante->descuento=0;
                     }
-                    if($tipoPrograma == 'Diplomado') $saldo = $saldo + (1333.4 * $matReprobada);
-                    elseif ($tipoPrograma == 'Maestria') $saldo = $saldo + (1166.7 * $matReprobada);
-                    elseif ($tipoPrograma == 'Especialidad') $saldo = $saldo + (1166.7 * $matReprobada);
+//                    if($tipoPrograma == 'Diplomado') $saldo = $saldo + (1333.4 * $matReprobada);
+//                    elseif ($tipoPrograma == 'Maestria') $saldo = $saldo + (1166.7 * $matReprobada);
+//                    elseif ($tipoPrograma == 'Especialidad') $saldo = $saldo + (1000 * $matReprobada);
                     $cuentaEstudiante->materias_reprobadas = $matReprobada;
                     $cuentaEstudiante->saldo = $saldo;
                     $cuentaEstudiante->save();
@@ -250,11 +260,13 @@ class InscripcionController extends Controller
                 $cont=$cont+1;
             }
             DB::commit();
-            return back()->with('msj','Registro Exitoso');
+            return 'Hola';
+//            return back()->with('msj','Registro Exitoso');
         }catch (\exception $e){
             DB::rollback();
-            dd($e);
-            return back()->with('msj','Error al registrar datos : Datos ingresados ya existen');
+            \Debugbar::error($e);
+//            return back()->with('msj','Error al registrar datos : Datos ingresados ya existen');
+            return 'Error';
         }
     }
 

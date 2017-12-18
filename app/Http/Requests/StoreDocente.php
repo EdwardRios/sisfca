@@ -26,13 +26,18 @@ class StoreDocente extends FormRequest
     {
         return [
             'codigo' => 'required|unique:docentes',
-            'carnet' => 'required|unique:docentes',
-            'nombre' => 'required|min:3',
-            'apellido' => 'required',
+            'carnet' => array('required',
+                          'unique:docentes',
+                          'numeric',
+                             'max:999999999'
+            ),
+            'nombre' => array('required','min:3', 'regex:/^[a-zA-Z ]+$/u'),
+            'apellido' => array('required','min:3', 'regex:/^[a-zA-Z ]+$/u'),
             'sexo' => 'required|not_in:0',
             'grado'=> 'required',
             'fechanac' => 'required',
-            'ciciudad' => 'required'
+            'ciciudad' => 'required',
+            'curriculum' => 'mimetypes:application/pdf'
         ];
     }
 
@@ -45,7 +50,9 @@ class StoreDocente extends FormRequest
             'codigo.required' => 'El codigo es obligatorio',
             'codigo.unique' => 'El codigo dado ya existe',
             'carnet.required' => 'El carnet es obligatorio' ,
-            'carnet.unique' => 'El carnet ingresado ya existe'
+            'carnet.unique' => 'El carnet ingresado ya existe',
+            'carnet.max' => 'El campo Carnet solo admite 8 digitos',
+            'curriculum.mimetypes' => 'El archivo debe ser de formato PDF'
         ];
     }
 }

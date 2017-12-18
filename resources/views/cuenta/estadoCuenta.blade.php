@@ -174,7 +174,10 @@
                         var4 = document.getElementById('descuento');
                         var4.innerText = data[0].descuento;
                         //Colocando el enlace para la descarga
-                        document.querySelector('#verDoc').setAttribute('href','{{ asset("descuento") }}/'+data[0].doc_respaldo );
+                        console.log(data[0].doc_respaldo);
+                        if(data[0].doc_respaldo != null){
+                            document.querySelector('#verDoc').setAttribute('href', '{{ asset("descuento") }}/' + data[0].doc_respaldo);
+                        }
                     },
                     error: function () {
                         console.log('Error')

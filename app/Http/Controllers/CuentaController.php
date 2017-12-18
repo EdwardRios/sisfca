@@ -182,10 +182,7 @@ class CuentaController extends Controller
 //            $cuenta->descuento = $descf; //A signar descuento
             //Colocar archivos
         }
-        $archivo =  $request->file('comprobante'); //Obtengo el archivo
-        \Debugbar::info( storage_path());
-        \Debugbar::info($archivo->getClientOriginalName());
-        \Debugbar::info($archivo->getClientOriginalExtension());
+        $archivo =  $request->file('comprobante'); //Obtengo el archivo\
         $nombreArchivo = $archivo->getClientOriginalName();
         $idEstudiante = $cuenta->estudiante_id;
         $rutaArchivo = Storage::disk('archivos')->putFileAs('descuentos', $archivo, $idEstudiante.'-'.$nombreArchivo);
@@ -199,6 +196,6 @@ class CuentaController extends Controller
 
     public function descargarArchivo($archivo)
     {
-        return response()->download(storage_path('archivos/descuentos/'.$archivo), null, [], null);
+            return response()->download(storage_path('archivos/descuentos/' . $archivo), null, [], null);
     }
 }

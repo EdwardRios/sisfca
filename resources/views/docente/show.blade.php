@@ -3,9 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h1>Detalles Docente</h1>
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <div class="box-title"><p><strong>Datos docente</strong></p></div>
+                </div>
+                <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
                             <td>Codigo Docente</td>
@@ -47,15 +49,48 @@
                             <td>Domicilio</td>
                             <td>{{ $docente->domicilio }}</td>
                         </tr>
+                        <tr>
+                            <td>Curriculum Vitae</td>
+                            <td><a href="{{ asset('docentes').'/'.$docente->curriculum}}"><div class="btn btn-success">Ver Curriculum Vitae</div></a></td>
+                        </tr>
                     </table>
-                    <div class="center-block" style="text-align:center">
                         <a href="{{ route('docente.index') }}">
                             <button type="button" class="btn btn-primary">
-                                Volver
+                                Volver a la lista
                             </button>
                         </a>
-                    </div>
 
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <div class="box-title"><p><strong>Modulos dictados</strong></p></div>
+                </div>
+                <div class="box-body">
+                    @foreach($materiasDocente as $mat)
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <div class="box-title">
+                                    <p><strong>Modulo:&nbsp;</strong>{{$mat->nombre}}</p>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                    <div class="col-md-3"><strong>Grupo:&nbsp;</strong>{{$mat->grupo}}</div>
+                                    <div class="col-md-3"><strong>Version:&nbsp;</strong>{{$mat->version}}</div>
+                                    <div class="col-md-3"><strong>Edicion:&nbsp;</strong>{{$mat->edicion}}</div>
+                                    <div class="col-md-3"><strong>A&ntilde;o:&nbsp;</strong>{{$mat->anho}}</div>
+
+                            </div>
+                            <div class="box-footer">
+                                <div class="col-md-6"><strong>Fecha Inicio:&nbsp;</strong>{{ Carbon\Carbon::parse($mat->fecha_inicio)->format('d/m/Y')}}</div>
+                                <div class="col-md-6"><strong>Fecha Fin:&nbsp;</strong>{{ Carbon\Carbon::parse($mat->fecha_fin)->format('d/m/Y') }}</div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

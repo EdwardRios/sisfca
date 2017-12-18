@@ -238,7 +238,7 @@
             </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="{{ route('cuenta.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Cuentas por cobrar</a></li>
+                  {{--<li><a href="{{ route('cuenta.index') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Cuentas por cobrar</a></li>--}}
                   <li><a href="{{ route('estadoCuenta') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Ver estado de cuentas</a></li>
                   <li><a href="{{ route('pagos.crear') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Registrar pago</a></li>
                   <li><a href="{{ route('asignarDescuento') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Asignar Descuento</a></li>
@@ -255,7 +255,7 @@
                   <li><a href="{{ route('reporte.certificado') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Certificado de Notas</a></li>
                   <li><a href="{{ route('reporte.noDeudor') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Certificado No Deudor</a></li>
                   <li><a href="{{ route('reporte.actaNotas') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Acta de notas</a></li>
-                  <li><a href="{{ route('pagosProgramas') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Pagos de programas</a></li>
+                  {{--<li><a href="{{ route('pagosProgramas') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Pagos de programas</a></li>--}}
               </ul>
           </li>
       </ul>

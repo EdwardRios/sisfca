@@ -9,6 +9,8 @@
                         $docente,
                     [
                         'route' =>['docente.update',$docente],
+                        'id'=>'formulario',
+                        'enctype' => 'multipart/form-data',
                         'method' => 'PUT'
                     ]
                 )!!}

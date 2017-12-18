@@ -13,7 +13,8 @@
                     ]
                 )!!}
                 @include('reporte.partials.form')
-                <button class="btn btn-primary center-block form-control" type="submit">Registrar datos</button>
+
+                <button class="btn btn-primary center-block form-control" type="submit">Generar Certificado</button>
                 {!! Form::close() !!}
             </div>
         </div>
