@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProgramaRequest;
 use App\Materia;
 use App\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class ProgramaController extends Controller
@@ -28,9 +29,9 @@ class ProgramaController extends Controller
 //        return Datatables::of(Estudiante::query()->select('nombre','apellido'))->make(true);
         return DataTables::of($builder)
             ->addColumn('action',function ($programa){
-                return '<a href="'.route('programa.show',$programa->id).'"class="btn btn-xs btn-primary">
+                return '<a href="'.route('programa.show',$programa->id).'"class="btn btn-xs btn-primary" style="font-size: 16px">
                         <i class="glyphicon glyphicon-edit"></i> Ver mas </a>&nbsp;
-                        <a href="'.route('programa.edit',$programa->id).'"class="btn btn-xs btn-success">
+                        <a href="'.route('programa.edit',$programa->id).'"class="btn btn-xs btn-success" style="font-size: 16px">
                         <i class="glyphicon glyphicon-edit"></i> Editar </a>';
             })
             ->make(true);
@@ -68,7 +69,15 @@ class ProgramaController extends Controller
     {
         $programa = Programa::find($id);
         $materia = Materia::select('nombre','nivel')->where('programa_id',$id)->get();
-        return view('programa.show',compact('programa','materia'));
+        $datosPrograma = DB::table('ofertas as o')
+                        ->join('materias as m','m.id','=','o.materia_id')
+                        ->join('gestiones as g','g.id','=','o.gestion_id')
+                        ->join('docentes as d','d.id','=','o.docente_id')
+                        ->where('m.programa_id','=', $id)
+                        ->select('d.nombre as docente','d.apellido','m.nombre as modulo','g.grupo',
+                                    'g.anho','g.version','g.edicion','o.fecha_inicio','o.fecha_fin')
+                        ->get();
+        return view('programa.show',compact('programa','materia','datosPrograma'));
     }
 
     /**

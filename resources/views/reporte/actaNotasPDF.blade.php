@@ -47,7 +47,7 @@
     <p>Numero de Aprobados: {{ $aprobados }}</p>
     <p>Numero de Reprobados: {{ $reprobados }} </p>
     <p>Numero de Inasistentes: {{ $inasistentes}}</p>
-
+    <br><br>
     <p class="center">
         {{$oferta->docente->nombre}} {{$oferta->docente->apellido}}<br>
         FIRMA DOCENTE

@@ -50,8 +50,12 @@
                             <td>{{ $docente->domicilio }}</td>
                         </tr>
                         <tr>
-                            <td>Curriculum Vitae</td>
-                            <td><a href="{{ asset('docentes').'/'.$docente->curriculum}}"><div class="btn btn-success">Ver Curriculum Vitae</div></a></td>
+                            <td>Curriculum Vitae:</td>
+                            @if($docente->curriculum == '')
+                                <td>No tiene CV subido</td>
+                            @else
+                                <td><a href="{{ asset('docentes').'/'.$docente->curriculum}}" target="_blank"><div class="btn btn-success">Ver Curriculum Vitae</div></a></td>
+                            @endif
                         </tr>
                     </table>
                         <a href="{{ route('docente.index') }}">
@@ -59,8 +63,6 @@
                                 Volver a la lista
                             </button>
                         </a>
-
-
                 </div>
             </div>
 

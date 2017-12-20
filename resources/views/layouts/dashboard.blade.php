@@ -185,6 +185,30 @@
         <li class="header">MENU PRINCIPAL</li>
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-user"></i> <span>Pre-Inscripcion</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+              {{--Sub Menu Diplomado--}}
+             <li class="treeview">
+                 <a href="#">
+                     <i class="fa fa-user"></i> <span>Diplomado</span>
+                     <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li><a href="{{ route('preInscripcionEgresado') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Educacion Continua <p>(Egresado)</p></a></li>
+                     <li><a href="{{ route('docente.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Profesional</a></li>
+                 </ul>
+             </li>
+             <li><a href="{{ route('docente.create') }}"><i class="fa fa-circle-o" aria-hidden="true"></i>Maestria</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-user"></i> <span>Registrar Datos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

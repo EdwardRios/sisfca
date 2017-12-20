@@ -75,7 +75,8 @@ Route::get('/listaEstudiantes','InscripcionController@listaEstudiantes');
 Route::get('/listaDetallePago','PagoController@listaDetallePago');
 Route::get('notas/create','InscripcionController@crearNotas');
 Route::post('notas/regnotas',['as' => 'notas.regNotas', 'uses' => 'InscripcionController@registrarNotas']);
-
+//Pre - Inscripcion
+Route::get('preinscripcion/diplomadoEduCon','EstudianteController@preEstudiante')->name('preInscripcionEgresado');
 
 Auth::routes();
 

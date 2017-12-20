@@ -6,6 +6,7 @@ use App\Carrera;
 use App\Estudiante;
 use App\Http\Requests\StoreEstudiante;
 use App\Http\Requests\UpdateEstudiante;
+use App\Programa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -148,5 +149,11 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         //
+    }
+        public function preEstudiante(){
+        $carreras = Carrera::orderBy('nombre')->pluck('nombre','id');
+        $programa = Programa::orderBy('nombre')->where('tipo','=','Diplomado')
+            ->pluck('nombre','id');
+        return view('preinscripcion.prediplomado',compact ('carreras','programa'));
     }
 }
